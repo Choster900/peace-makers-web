@@ -66,51 +66,7 @@ export default {
                 inputPlaceholderText: 'Search item here...',
                 menuList: {
                     title: 'Home',
-                    navList: [
-                        {
-                            id: 1,
-                            title: 'Home Page 1',
-                            path: '/'
-                        },
-                        {
-                            id: 2,
-                            title: 'Home Page 2',
-                            path: '/home-v2'
-                        },
-                        {
-                            id: 3,
-                            title: 'Home Page 3',
-                            path: '/home-v3'
-                        },
-                        {
-                            id: 4,
-                            title: 'Home Page 4',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v4'
-                        },
-                        {
-                            id: 5,
-                            title: 'Home Page 5',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v5'
-                        },
-                        {
-                            id: 6,
-                            title: 'Home Page 6',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v6'
-                        },
-                        {
-                            id: 7,
-                            title: 'Home Page 7',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v7'
-                        },
-                    ]
+                    
                 },
                 menuList2: {
                     title: 'Explore',
