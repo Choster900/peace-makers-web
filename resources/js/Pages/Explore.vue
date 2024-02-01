@@ -4,10 +4,13 @@
         <header class="header-section has-header-main bg-gradient-2">
             <!-- Header main -->
             <HeaderMain isTransparent="is-transparent"></HeaderMain>
-
         </header>
-        SOY EL EXPLORE
-
+        <!-- Explore section  -->
+        <ExploreSection></ExploreSection>
+        <!-- top creators -->
+        <TopCreators classname="section-space-t"></TopCreators>
+        <!-- Collections -->
+        <Collections></Collections>
         <!-- Footer  -->
         <Footer classname="bg-dark on-dark"></Footer>
     </div><!-- end page-wrap -->
@@ -25,20 +28,26 @@ import HowItWork from '@/Components/section/HowItWork.vue';
 import Category from '@/Components/section/Category.vue';
 import Newsletter from '@/Components/section/Newsletter.vue';
 import Footer from '@/Layouts/Footer.vue';
+import ExploreSection from '@/Components/section/ExploreSection.vue';
+import TopCreators from '@/Components/section/TopCreators.vue';
+import Collections from '@/Components/section/Collections.vue';
 export default {
-    name: 'Home',
+    name: 'Explore',
     components: {
-    ButtonLink,
-    SectionHeading,
-    ProductsContainer,
-    HeaderMain,
-    HeroTwo,
-    Featured,
-    HowItWork,
-    Category,
-    Newsletter,
-    Footer
-},
+        ButtonLink,
+        SectionHeading,
+        ProductsContainer,
+        HeaderMain,
+        HeroTwo,
+        Featured,
+        HowItWork,
+        Category,
+        Newsletter,
+        Footer,
+        ExploreSection,
+        TopCreators,
+        Collections,
+    },
     setup() {
 
         const SectionData = ref({
@@ -721,6 +730,195 @@ export default {
                     },
                 ],
             },
+
+            // creator data
+            creatorData: {
+                title: 'Featured Creators',
+                meta: 'Our Creators',
+                content: "Explore on the world's best NFT marketplace with our beautiful NFT products creators. We want to be a part of your smile.",
+                creatorList: [
+                    {
+                        id: 1,
+                        title: '@nathan_walls',
+                        subTitle: '24.13 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 2,
+                        title: '@alex_smith',
+                        subTitle: '12.24 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 3,
+                        title: '@kevin_martin',
+                        subTitle: '13.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 4,
+                        title: '@david_martin',
+                        subTitle: '34.13 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 5,
+                        title: '@jhonatan_doe',
+                        subTitle: '23.24 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 6,
+                        title: '@mark_hardson',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                ],
+                creatorListTwo: [
+                    {
+                        id: 1,
+                        title: 'Nathan Walls',
+                        subTitle: '24.13 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 2,
+                        title: 'Alex Smith',
+                        subTitle: '12.24 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 3,
+                        title: 'Kevin Martin',
+                        subTitle: '13.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 4,
+                        title: 'David Martin',
+                        subTitle: '34.13 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 5,
+                        title: 'Jhonatan Doe',
+                        subTitle: '23.24 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 6,
+                        title: 'Mark Hardson',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 7,
+                        title: 'Gayle Hicks',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 8,
+                        title: 'Claude Banks',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 9,
+                        title: 'Stacy Long',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 10,
+                        title: 'Fred Ryan',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 11,
+                        title: 'Franklin Greer',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                    {
+                        id: 12,
+                        title: 'Karla Sharp',
+                        subTitle: '34.57 ETH',
+
+                        path: '/author'
+                    },
+                ]
+            },
+            // collection data
+            collectionData: {
+                title: 'Collections',
+                collectionList: [
+                    {
+                        id: 1,
+                        title: 'Crappy Dogecoin',
+                        price: '$26,220',
+                        path: ''
+                    },
+                    {
+                        id: 2,
+                        title: 'Savage Dogs',
+                        price: '$24,497',
+                        path: ''
+                    },
+                    {
+                        id: 3,
+                        title: 'Crappy Dogecoin',
+                        price: '$26,220',
+                        path: ''
+                    },
+                    {
+                        id: 4,
+                        title: 'Crypto Krills',
+                        price: '$11,356',
+                        path: ''
+                    },
+                    {
+                        id: 5,
+                        title: 'Chibi Doge',
+                        price: '$4,234',
+                        path: ''
+                    }
+                ]
+            },
+            sellBuyData: [
+                {
+                    id: 1,
+                    title: 'Buy NFT Products',
+                    content: 'Purchase digital NFT products from the biggest directory.',
+                    btnText: 'Get Started',
+                    btnLink: '/register'
+                },
+                {
+                    id: 2,
+                    title: 'Sell Your NFT Products',
+                    content: 'Sell one of your NFT products to make a huge profit.',
+                    btnText: 'Start Selling',
+                    btnLink: '/create'
+                },
+            ],
             // how It Work Data
             howItWorkData: {
                 title: 'Create and sell your NFTs',
