@@ -4,7 +4,7 @@
             <!-- section heading -->
             <SectionHeading classname="text-center" :text="SectionData.relatedProductData.title"></SectionHeading>
             <!-- product -->
-            <swiper :slides-per-view="4" :breakpoints="{
+            <swiper :modules="modules" :slides-per-view="4" :breakpoints="{
                 0: {
                     slidesPerView: 1
                 },
@@ -17,21 +17,22 @@
                 1200: {
                     slidesPerView: 4
                 }
-            }" :pagination="{ clickable: true }">
-                <swiper-slide v-for="item in SectionData.productData.products" :key="item.id">
-                    <div class="card card-full">
+            }" :pagination="pagination" :loop="true">
+                <swiper-slide v-for="item in SectionData.productData.products" :key="item.id"
+                    class="w-full md:w-1/2 lg:w-1/4 xl:w-1/4">
+                    <div class="card card-full mx-2">
                         <div class="card-image">
-                            <img :src="item.img" class="card-img-top" alt="art image">
+                            <img src="../../../images/thumb/nft-2.jpg" class="card-img-top" alt="art image">
                         </div>
                         <div class="card-body p-4">
                             <h5 class="card-title text-truncate mb-0">{{ item.title }}</h5>
-                            <div class="card-author mb-1 d-flex align-items-center">
+                            <div class="card-author mb-1 flex items-center">
                                 <span class="me-1 card-author-by">By</span>
                                 <div class="custom-tooltip-wrap">
-                                    <router-link :to="item.authorLink" class="author-link">{{ item.author }}</router-link>
+                                    <DropdownLink :to="item.authorLink" class="author-link">{{ item.author }}</DropdownLink>
                                 </div>
                             </div><!-- end card-author -->
-                            <div class="card-price-wrap d-flex align-items-center justify-content-between mb-3">
+                            <div class="card-price-wrap flex items-center justify-between mb-3">
                                 <div class="me-2">
                                     <span class="card-price-title">Price</span>
                                     <span class="card-price-number">&dollar;{{ item.price }}</span>
@@ -43,7 +44,7 @@
                             </div><!-- end card-price-wrap -->
                             <span class="btn btn-sm btn-dark">Place bid</span>
                         </div><!-- end card-body -->
-                        <router-link class="details" :to="{
+                        <DropdownLink class="details" :to="{
                             name: 'ProductDetail',
                             params: {
                                 id: item.id,
@@ -58,9 +59,10 @@
                                 content: item.content,
                             }
                         }">
-                        </router-link>
+                        </DropdownLink>
                     </div><!-- end card -->
                 </swiper-slide>
+
             </swiper>
         </div><!-- .container -->
     </section><!-- end related-product-section -->
@@ -68,21 +70,23 @@
 
 <script>
 // Import component data. You can change the data in the store to reflect in all component
+// Import Swiper styles
+import 'swiper/css';
 
+import 'swiper/css/scrollbar';
 // core version + navigation, pagination modules:
-import SwiperCore, { Pagination } from 'swiper';
-
-// configure Swiper to use modules
-SwiperCore.use([Pagination]);
-
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper/modules';
+import DropdownLink from '../DropdownLink.vue';
+
 
 export default {
     name: 'RelatedProduct',
     components: {
         Swiper,
         SwiperSlide,
+        DropdownLink
     },
     data() {
         return {
@@ -773,6 +777,18 @@ export default {
             }
         }
     },
+    setup() {
+
+        return {
+            pagination: {
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + ' text-transparent">' + (index + 1) + '</span>';
+                },
+            },
+            modules: [Pagination]
+        }
+    }
 }
 </script>
 
@@ -790,5 +806,9 @@ export default {
 .card-price-wrap {
     z-index: 2;
     position: relative;
+}
+
+.swiper-horizontal {
+    padding-bottom: 73px;
 }
 </style>

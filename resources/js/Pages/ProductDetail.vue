@@ -11,14 +11,16 @@
                     <div class="col-lg-6 pe-xl-5">
                         <div class="item-detail-content">
                             <div class="item-detail-img-container mb-4">
-                                <img :src="imgLg" alt="" class="w-100 rounded-3">
-                            </div><!-- end item-detail-img-container -->
+                                <img src="../../images/thumb/nft-lg.jpg" alt="" class="w-100 rounded-3">
+                            </div>
+                            <!-- end item-detail-img-container -->
                             <div class="item-detail-tab">
+
                                 <ul class="nav nav-tabs nav-tabs-s1" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation"
                                         v-for="list in SectionData.itemDetailData.itemDetailTabNav" :key="list.id">
                                         <button class="nav-link" :class="list.isActive" :id="list.slug" data-bs-toggle="tab"
-                                            :data-bs-target="list.bsTarget" type="button">{{ list.title }} </button>
+                                            :data-bs-target="list.bsTarget" type="button">{{ list.title }}a </button>
                                     </li>
                                 </ul>
                                 <div class="tab-content mt-3" id="myTabContent">
@@ -28,9 +30,9 @@
                                             <div class="card-media card-media-s2 mb-3"
                                                 v-for="item in SectionData.itemDetailData.itemDetailOwnerList"
                                                 :key="item.id">
-                                                <router-link :to="item.path" class="card-media-img flex-shrink-0 d-block">
-                                                    <img :src="item.avatar" alt="avatar">
-                                                </router-link>
+                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
+                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                                </DropdownLink>
                                                 <div class="card-media-body text-truncate">
                                                     <p class="fw-semibold text-truncate"><a :href="item.path"
                                                             class="text-black">{{ item.title }}</a></p>
@@ -44,9 +46,9 @@
                                             <div class="card-media card-media-s2 mb-3"
                                                 v-for="item in SectionData.itemDetailData.itemDetailBidsList"
                                                 :key="item.id">
-                                                <router-link :to="item.path" class="card-media-img flex-shrink-0 d-block">
-                                                    <img :src="item.avatar" alt="avatar">
-                                                </router-link>
+                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
+                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                                </DropdownLink>
                                                 <div class="card-media-body text-truncate">
                                                     <p class="fw-semibold text-black text-truncate">{{ item.title }}</p>
                                                     <p class="small">{{ item.date }}</p>
@@ -59,9 +61,9 @@
                                             <div class="card-media card-media-s2 mb-3"
                                                 v-for="item in SectionData.itemDetailData.itemDetailHistoryList"
                                                 :key="item.id">
-                                                <router-link :to="item.path" class="card-media-img flex-shrink-0 d-block">
-                                                    <img :src="item.avatar" alt="avatar">
-                                                </router-link>
+                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
+                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                                </DropdownLink>
                                                 <div class="card-media-body text-truncate">
                                                     <p class="fw-semibold text-black text-truncate">{{ item.title }}</p>
                                                     <p class="small text-truncate">{{ item.subTitle }}</p>
@@ -75,26 +77,28 @@
                     </div><!-- end col -->
                     <div class="col-lg-6">
                         <div class="item-detail-content mt-4 mt-lg-0">
-                            <h1 class="item-detail-title mb-2">{{ title }}</h1>
+                            <h1 class="item-detail-title mb-2">Lorem ipsum dolor sit amet consectetur.</h1>
                             <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
-                                <span class="item-detail-text-meta">{{ metaText }}</span>
+                                <span class="item-detail-text-meta">lorem</span>
                                 <span class="dot-separeted"></span>
-                                <span class="item-detail-text-meta">{{ metaTextTwo }}</span>
+                                <span class="item-detail-text-meta">ipsum</span>
                                 <span class="dot-separeted"></span>
-                                <span class="item-detail-text-meta" v-html="metaTextThree"></span>
+                                <span class="item-detail-text-meta">dolor</span>
                             </div>
-                            <p class="item-detail-text mb-4">{{ content }}</p>
+                            <p class="item-detail-text mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Corporis iste reprehenderit voluptatibus fuga cum doloribus in quae accusamus, voluptates,
+                                impedit dignissimos eius itaque atque sint hic veritatis quisquam magnam officia.</p>
                             <div class="item-credits">
                                 <div class="row g-4">
                                     <div class="col-xl-6" v-for="item in SectionData.itemDetailData.itemDetailList"
                                         :key="item.id">
                                         <div class="card-media card-media-s1">
-                                            <router-link :to="item.path" class="card-media-img flex-shrink-0 d-block">
-                                                <img :src="item.avatar" alt="avatar">
-                                            </router-link>
+                                            <DropdownLink class="card-media-img flex-shrink-0 d-block">
+                                                <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                            </DropdownLink>
                                             <div class="card-media-body">
-                                                <router-link :to="item.path" class="fw-semibold">{{ item.title
-                                                }}</router-link>
+                                                <DropdownLink class="fw-semibold">{{ item.title
+                                                }}</DropdownLink>
                                                 <p class="fw-medium small">{{ item.subTitle }}</p>
                                             </div>
                                         </div><!-- end card -->
@@ -102,9 +106,9 @@
                                     <div class="col-xl-12" v-for="item in SectionData.itemDetailData.itemDetailListTwo"
                                         :key="item.id">
                                         <div class="card-media card-media-s1">
-                                            <router-link :to="item.path" class="card-media-img flex-shrink-0 d-block">
-                                                <img :src="item.avatar" alt="avatar">
-                                            </router-link>
+                                            <DropdownLink class="card-media-img flex-shrink-0 d-block">
+                                                <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                            </DropdownLink>
                                             <div class="card-media-body">
                                                 <p class="fw-semibold text-black">{{ item.title }}</p>
                                                 <span class="fw-medium small">{{ item.subTitle }}</span>
@@ -124,10 +128,10 @@
                                             <a href="#" class="btn bg-dark-dim d-block" data-bs-toggle="dropdown">{{
                                                 SectionData.itemDetailData.btnTextTwo }}</a>
                                             <div class="dropdown-menu card-generic p-2 keep-open w-100 mt-1">
-                                                <router-link :to="icon.path" class="dropdown-item card-generic-item"
+                                                <DropdownLink  class="dropdown-item card-generic-item"
                                                     v-for="(icon, i) in SectionData.socialShareList" :key="i"><em
                                                         class="ni me-2" :class="icon.btnClass"></em>{{ icon.title
-                                                        }}</router-link>
+                                                        }}</DropdownLink>
                                             </div>
                                         </div>
                                     </li>
@@ -180,12 +184,14 @@
 import HeaderMain from '@/Layouts/HeaderMain.vue';
 import RelatedProduct from '@/Components/section/RelatedProduct.vue';
 import { ref } from 'vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 export default {
     name: 'ProductDetail',
     components: {
         HeaderMain,
         RelatedProduct,
+        DropdownLink
     },
     setup() {
 
