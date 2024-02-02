@@ -193,7 +193,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #7952b3;
+  color: #00314B;
   text-decoration: underline; }
   a:hover {
     color: #61428f; }
@@ -2235,22 +2235,22 @@ textarea.form-control-lg {
     border-color: #f8f9fa; }
 
 .btn-dark {
-  color: #ffffff;
-  background-color: #1c2b46;
-  border-color: #1c2b46; }
+  color: #ffffff !important;
+  background-color: #0E3C55;
+  border-color: #0E3C55; }
   .btn-dark:hover {
-    color: #ffffff;
-    background-color: #18253c;
+    color: #ffffff !important;
+    background-color: #0E3C55;
     border-color: #162238; }
   .btn-check:focus + .btn-dark, .btn-dark:focus {
-    color: #ffffff;
-    background-color: #18253c;
+    color: #ffffff !important;
+    background-color: #0E3C55;
     border-color: #162238;
     box-shadow: 0 0 0 0.25rem rgba(62, 75, 98, 0.5); }
   .btn-check:checked + .btn-dark,
   .btn-check:active + .btn-dark, .btn-dark:active, .btn-dark.active,
   .show > .btn-dark.dropdown-toggle {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #162238;
     border-color: #152035; }
     .btn-check:checked + .btn-dark:focus,
@@ -11534,7 +11534,7 @@ textarea.form-control-lg {
 /**
  * Swiper 7.0.4
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * https://swiperjs.com
+ * https://erjs.com
  *
  * Copyright 2014-2021 Vladimir Kharlampidi
  *

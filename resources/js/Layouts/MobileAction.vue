@@ -6,7 +6,7 @@
             <a class="icon-btn" href="#" data-bs-toggle="dropdown" aria-expanded="false"><em class="ni ni-search"></em></a>
             <div class="dropdown-menu dropdown-menu-end card-generic">
                 <div class="input-group">
-                    <input type="search" class="form-control form-control-s1" placeholder="Search item here...">
+                    <input type="search" class="form-control form-control-s1" placeholder="Buscar blogs">
                     <a href="#" class="btn btn-sm btn-outline-secondary"><em class="ni ni-search"></em></a>
                  </div>
             </div>

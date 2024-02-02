@@ -32,7 +32,7 @@ export default {
         const SectionData = ref({
             // Product data
             categoryData: {
-                title: 'Browse by category',
+                title: 'Nuestros patrocinadores',
                 content: 'This is just a simple text made for this unique and awesome template, you can replace it with any text. It is a long established fact.',
                 categoryList: [
                     {

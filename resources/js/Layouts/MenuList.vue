@@ -1,8 +1,8 @@
 <template>
     <ul class="menu-list ms-lg-auto">
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList.title }}</a>
-            <div class="menu-sub">
+            <DropdownLink href="/" class="menu-whitout-link ">{{ SectionData.headerData.menuList.title }}</DropdownLink>
+            <!-- <div class="menu-sub">
                 <ul class="menu-list">
                     <li class="menu-item" v-for="nav in SectionData.headerData.menuList.navList" :key="nav.id">
                         <DropdownLink as="" :href="nav.path" class="menu-link text-slate-400 hover:text-indigo-500">{{ nav.title }}
@@ -11,18 +11,18 @@
                         </DropdownLink>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </li>
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList2.title }}</a>
-            <div class="menu-sub">
+            <DropdownLink href="/explore" class="menu-whitout-link">{{ SectionData.headerData.menuList2.title }}</DropdownLink>
+           <!--  <div class="menu-sub">
                 <ul class="menu-list">
                     <li class="menu-item" v-for="nav in SectionData.headerData.menuList2.navList" :key="nav.id">
                         <DropdownLink :href="nav.path" class="menu-link">{{ nav.title }} <span :class="nav.badgeClass" v-if="nav.badge">{{
                             nav.badge }}</span></DropdownLink>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </li>
         <li class="menu-item has-sub">
             <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList3.title }}</a>
@@ -66,7 +66,7 @@ export default {
                 inputPlaceholderText: 'Search item here...',
                 menuList: {
                     title: 'Home',
-                    
+
                 },
                 menuList2: {
                     title: 'Explore',

@@ -21,6 +21,6 @@
     "dependencies": {
         "vue3-clipboard": "^1.0.0",
         "@popperjs/core": "^2.10.2",
-        "swiper": "^6.8.4"
+        "swiper": "^11.0.5"
     }
 }

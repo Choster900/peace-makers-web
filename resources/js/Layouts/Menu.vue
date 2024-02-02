@@ -5,7 +5,7 @@
         <!-- header btn -->
         <ul class="flex flex-col  md:flex-row gap-2 md:gap-4">
             <li>
-                <DropdownLink class="btn btn-dark text-white">Connect Wallet</DropdownLink>
+                <DropdownLink class="btn btn-dark text-white">Donations</DropdownLink>
             </li>
             <li>
                 <ThemeSwither></ThemeSwither>
