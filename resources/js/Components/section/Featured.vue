@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <template>
     <section class="section-space-b feature-section">
         <div class="container">
@@ -22,12 +21,11 @@
     </section><!-- end featured-creator-section -->
 </template>
 <script>
-// Import component data. You can change the data in the store to reflect in all component
-import SectionHeading from '@/Components/Common/SectionHeading.vue'
 import { ref } from 'vue'
 import DropdownLink from '@/Components/DropdownLink.vue';
+import SectionHeading from '../common/SectionHeading.vue';
 export default {
-    components: { DropdownLink, SectionHeading },
+    components: { DropdownLink, SectionHeading, SectionHeading },
     name: 'Featured',
     setup() {
         const SectionData = ref({

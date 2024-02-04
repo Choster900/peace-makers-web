@@ -42,7 +42,7 @@ import Featured from '@/Components/section/Featured.vue';
 import ProductsContainer from '@/Components/section/ProductsContainer.vue'
 import SectionHeading from '@/Components/common/SectionHeading.vue';
 import { ref } from 'vue';
-import ButtonLink from '@/Components/common/ButtonLink.vue';
+import ButtonLink from '@/Components/Common/ButtonLink.vue';
 import HowItWork from '@/Components/section/HowItWork.vue';
 import Category from '@/Components/section/Category.vue';
 import Newsletter from '@/Components/section/Newsletter.vue';

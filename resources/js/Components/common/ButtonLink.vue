@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'ButtonLink',
   props: ['text', 'classname', 'link']
 }
 </script>
