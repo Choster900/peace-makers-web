@@ -8,7 +8,7 @@
             <div class="card-author mb-1 d-flex align-items-center">
                 <span class="me-1 card-author-by text-xs">By</span>
                 <div class="custom-tooltip-wrap">
-                    <DropdownLink :to="product.authorLink"
+                    <DropdownLink href="/product-detail"
                         class="text-xs custom-tooltip author-link text-slate-600 font-semibold">{{ product.author }}
                     </DropdownLink>
                     <div class="card-generic custom-tooltip-dropdown">
@@ -40,11 +40,12 @@
             </div><!-- end card-price-wrap -->
 
         </div><!-- end card-body -->
-        <DropdownLink class="details"></DropdownLink>
+        <DropdownLink href="/product-detail" class="details"></DropdownLink>
     </div><!-- end card -->
 </template>
 <script>
 import { createPopper } from '@popperjs/core';
+import DropdownLink from '../DropdownLink.vue';
 export default {
     name: 'Products',
     props: ['product'],
@@ -58,18 +59,17 @@ export default {
                     const next = item.nextElementSibling;
                     createPopper(item, next);
                     parent.addEventListener("mouseenter", function () {
-                        parent.classList.add(active)
+                        parent.classList.add(active);
                     });
                     parent.addEventListener("mouseleave", function () {
-                        parent.classList.remove(active)
+                        parent.classList.remove(active);
                     });
                 });
             }
         }
-
         customTooltip('.custom-tooltip', 'active');
-
-    }
+    },
+    components: { DropdownLink }
 }
 </script>
 

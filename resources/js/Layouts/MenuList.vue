@@ -69,7 +69,7 @@ export default {
 
                 },
                 menuList2: {
-                    title: 'Explore',
+                    title: 'Blog',
                     navList: [
                         {
                             id: 1,
@@ -131,7 +131,7 @@ export default {
                     ]
                 },
                 menuList3: {
-                    title: 'Pages',
+                    title: 'About us',
                     navList: [
                         {
                             id: 1,
@@ -196,7 +196,7 @@ export default {
                     ]
                 },
                 menuList4: {
-                    title: 'User Panel',
+                    title: 'Contact',
                     navList: [
                         {
                             id: 1,
