@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <template>
     <section class="section-space-b feature-section">
         <div class="container">
