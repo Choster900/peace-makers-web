@@ -23,7 +23,7 @@
 <script>
 import { ref } from 'vue'
 import DropdownLink from '@/Components/DropdownLink.vue';
-import SectionHeading from '../common/SectionHeading.vue';
+import SectionHeading from '../Common/SectionHeading.vue';
 export default {
     components: { DropdownLink, SectionHeading, SectionHeading },
     name: 'Featured',
