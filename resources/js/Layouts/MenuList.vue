@@ -1,8 +1,8 @@
 <template>
     <ul class="menu-list ms-lg-auto">
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList.title }}</a>
-            <div class="menu-sub">
+            <DropdownLink href="/" class="menu-whitout-link ">{{ SectionData.headerData.menuList.title }}</DropdownLink>
+            <!-- <div class="menu-sub">
                 <ul class="menu-list">
                     <li class="menu-item" v-for="nav in SectionData.headerData.menuList.navList" :key="nav.id">
                         <DropdownLink as="" :href="nav.path" class="menu-link text-slate-400 hover:text-indigo-500">{{ nav.title }}
@@ -11,18 +11,18 @@
                         </DropdownLink>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </li>
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList2.title }}</a>
-            <div class="menu-sub">
+            <DropdownLink href="/explore" class="menu-whitout-link">{{ SectionData.headerData.menuList2.title }}</DropdownLink>
+           <!--  <div class="menu-sub">
                 <ul class="menu-list">
                     <li class="menu-item" v-for="nav in SectionData.headerData.menuList2.navList" :key="nav.id">
                         <DropdownLink :href="nav.path" class="menu-link">{{ nav.title }} <span :class="nav.badgeClass" v-if="nav.badge">{{
                             nav.badge }}</span></DropdownLink>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </li>
         <li class="menu-item has-sub">
             <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList3.title }}</a>
@@ -66,54 +66,10 @@ export default {
                 inputPlaceholderText: 'Search item here...',
                 menuList: {
                     title: 'Home',
-                    navList: [
-                        {
-                            id: 1,
-                            title: 'Home Page 1',
-                            path: '/'
-                        },
-                        {
-                            id: 2,
-                            title: 'Home Page 2',
-                            path: '/home-v2'
-                        },
-                        {
-                            id: 3,
-                            title: 'Home Page 3',
-                            path: '/home-v3'
-                        },
-                        {
-                            id: 4,
-                            title: 'Home Page 4',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v4'
-                        },
-                        {
-                            id: 5,
-                            title: 'Home Page 5',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v5'
-                        },
-                        {
-                            id: 6,
-                            title: 'Home Page 6',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v6'
-                        },
-                        {
-                            id: 7,
-                            title: 'Home Page 7',
-                            badge: 'New',
-                            badgeClass: 'badge text-primary bg-primary-50',
-                            path: '/home-v7'
-                        },
-                    ]
+
                 },
                 menuList2: {
-                    title: 'Explore',
+                    title: 'Blog',
                     navList: [
                         {
                             id: 1,
@@ -175,7 +131,7 @@ export default {
                     ]
                 },
                 menuList3: {
-                    title: 'Pages',
+                    title: 'About us',
                     navList: [
                         {
                             id: 1,
@@ -240,7 +196,7 @@ export default {
                     ]
                 },
                 menuList4: {
-                    title: 'User Panel',
+                    title: 'Contact',
                     navList: [
                         {
                             id: 1,

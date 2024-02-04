@@ -33,8 +33,8 @@ export default {
         const SectionData = ref({
             // Freatured data
             featuredData: {
-                title: 'Exclusive EnftyMart drops',
-                content: 'This is just a simple text made for this unique and awesome template, you can replace it with any text. It is a long established fact.',
+                title: 'lorem ipsum dolor sit amet, consectetur.',
+                content: 'Lorem ipsum dolor sit amet, consectetur in el metus et just Lorem inim ',
                 featuredList: [
                     {
                         id: 1,

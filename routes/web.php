@@ -32,6 +32,10 @@ Route::get('/explore', function () {
     return Inertia::render('Explore');
 });
 
+Route::get('/post-detail', function () {
+    //return Inertia::render('ProductDetail');
+    return Inertia::render('ProductDetail');
+});
 
 Route::middleware([
     'auth:sanctum',
@@ -42,3 +46,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+

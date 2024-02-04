@@ -745,8 +745,8 @@ export default {
             },
             // how It Work Data
             howItWorkData: {
-                title: 'Create and sell your NFTs',
-                content: 'This is just a simple text made for this unique and awesome template, you can replace it with any text. It is a long established fact.',
+                title: 'Nuestros facilitadores',
+                content: '(Breve descripcion de los facilitadores que mas cuentan )This is just a simple text made for this unique and awesome template, you can replace it with any text. It is a long established fact.',
                 titleTwo: 'Mint, Buy and Sell or Just Launch <br> Your Own NFT Store',
                 titleThree: 'Get Started in 3 simple steps',
                 btnText: 'Create Store',

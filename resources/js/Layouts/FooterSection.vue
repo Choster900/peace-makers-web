@@ -150,7 +150,7 @@ export default {
                     }
                 ]
             },
-            copyTitle: 'Copyright © 2022 EnftyMart. Template Made by <a href="https://themeforest.net/user/softnio/portfolio" target="_blank">Softnio</a>'
+            copyTitle: 'Copyright © 2024 Peace Makers.  <a href="https://www.facebook.com/PeaceMakers.Sv" target="_blank">UnicSocialMedia</a>'
 
         })
         return {

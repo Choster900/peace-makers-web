@@ -1,6 +1,6 @@
 <template>
     <div class="header-search-form" :class="classname">
-        <input type="search" class="form-control form-control-s1" placeholder="Search item here...">
+        <input type="search" class="form-control form-control-s1" placeholder="Buscar blogs">
     </div>
 </template>
 <script>
@@ -11,7 +11,7 @@ export default {
   props: ['classname'],
   data () {
     return {
-      
+
     }
   }
 }
