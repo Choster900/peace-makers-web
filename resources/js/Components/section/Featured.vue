@@ -23,7 +23,7 @@
 </template>
 <script>
 // Import component data. You can change the data in the store to reflect in all component
-import SectionHeading from '@/components/common/SectionHeading.vue'
+import SectionHeading from '@/Components/Common/SectionHeading.vue'
 import { ref } from 'vue'
 import DropdownLink from '@/Components/DropdownLink.vue';
 export default {
