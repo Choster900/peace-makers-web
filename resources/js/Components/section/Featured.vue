@@ -2,8 +2,8 @@
     <section class="section-space-b feature-section">
         <div class="container">
             <!-- section heading -->
-            <SectionHeading classname="text-center" :text="SectionData.featuredData.title"
-                :content="SectionData.featuredData.content" isMargin="mb-3"></SectionHeading>
+            <!-- <SectionHeading classname="text-center" :text="SectionData.featuredData.title"
+                :content="SectionData.featuredData.content" isMargin="mb-3" /> -->
 
             <div class="row g-gs">
                 <div class="col-sm-6 col-md-6 col-lg-3" v-for="item in SectionData.featuredData.featuredList"
@@ -24,9 +24,9 @@
 // Import component data. You can change the data in the store to reflect in all component
 import { ref } from 'vue'
 import DropdownLink from '@/Components/DropdownLink.vue';
-import SectionHeading from '../Common/SectionHeading.vue';
-export default {
-    components: { DropdownLink, SectionHeading },
+/* import SectionHeading from '@/Components/Common/SectionHeading.vue';
+ */export default {
+    components: { DropdownLink, /* SectionHeading */ },
     name: 'Featured',
     setup() {
         const SectionData = ref({
