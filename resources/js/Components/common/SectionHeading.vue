@@ -7,7 +7,6 @@
 <script>
 
 export default {
-  name: 'SectionHeading',
   props: ['text', 'content', 'isMargin', 'classname']
 }
 </script>
