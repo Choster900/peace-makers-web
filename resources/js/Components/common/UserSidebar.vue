@@ -1,49 +1,99 @@
 <template>
-<div class="col-lg-3">
-                        <div class="sidebar-head d-flex flex-wrap align-items-center justify-content-between">
-                            <h3 class="sidebar-head-title">{{ title }}</h3>
-                            <div class="sidebar-head-action d-flex align-items-center">
-                                <div class="sidebar-drop dropdown">
-                                    <a class="icon-btn menu-toggler-user-open" href="#">
-                                        <em class="ni ni-menu"></em>
-                                    </a>
-                                </div><!-- end sidebar-drop -->
-                            </div><!-- end sidebar-head-action -->
-                        </div><!-- end sidebar-head -->
-                        <div class="sidebar sidebar-user-mobile">
-                            <a href="#" class="icon-btn menu-toggler-user-close">
-                                <em class="ni ni-cross"></em>
-                            </a>
-                            <div class="sidebar-widget">
-                                <ul class="user-nav">
-                                    <li v-for="(list, i) in lists" :key="i" :class="list.class"><router-link :to="list.path"><em class="ni me-2" :class="list.icon"></em>{{ list.title }}</router-link></li>
-                                </ul>
-                            </div><!-- end sidebar-widget -->
-                        </div><!-- end sidebar -->
-                    </div><!-- end col-lg-4 -->
+    <div class="col-lg-3">
+        <div class="sidebar-head d-flex flex-wrap align-items-center justify-content-between">
+            <h3 class="sidebar-head-title">{{ title }}</h3>
+            <div class="sidebar-head-action d-flex align-items-center">
+                <div class="sidebar-drop dropdown">
+                    <a class="icon-btn menu-toggler-user-open" href="#">
+                        <em class="ni ni-menu"></em>
+                    </a>
+                </div><!-- end sidebar-drop -->
+            </div><!-- end sidebar-head-action -->
+        </div><!-- end sidebar-head -->
+        <div class="sidebar sidebar-user-mobile">
+            <a href="#" class="icon-btn menu-toggler-user-close">
+                <em class="ni ni-cross"></em>
+            </a>
+            <div class="sidebar-widget">
+                <ul class="user-nav">
+                    <li v-for="(list, i) in lists" :key="i" :class="list.class"><router-link :to="list.path"><em
+                                class="ni me-2" :class="list.icon"></em>{{ list.title }}</router-link></li>
+                </ul>
+            </div><!-- end sidebar-widget -->
+        </div><!-- end sidebar -->
+    </div><!-- end col-lg-4 -->
 </template>
 
 <script>
 // Import component data. You can change the data in the store to reflect in all component
-import SectionData from '@/store/store.js'
+
 export default {
-  name: 'UserSidebar',
-  props: ['lists', 'title', 'navs'],
-  data () {
-    return {
-      SectionData
-    }
-  },
-  mounted() {
-      /*  =======================================================
-        User sidebar menu
-        ========================================================== */
+    name: 'UserSidebar',
+    props: ['lists', 'title', 'navs'],
+    data() {
+        return {
+            SectionData: {
+                salePurchaseSidebarData: {
+                    title: 'Sales / Purchase',
+                    navList: [
+                        {
+                            id: 1,
+                            icon: 'ni-gift',
+                            title: 'My Offers',
+                            path: 'offers'
+                        },
+                        {
+                            id: 2,
+                            icon: 'ni-file-text',
+                            title: 'Activity',
+                            path: 'activity-v2'
+                        },
+                        {
+                            id: 3,
+                            class: 'active',
+                            icon: 'ni-money',
+                            title: 'Sales / Purchase',
+                            path: 'purchases-sales'
+                        },
+                        {
+                            id: 4,
+                            icon: 'ni-exchange',
+                            title: 'Transactions',
+                            path: 'transactions'
+                        },
+                        {
+                            id: 5,
+                            icon: 'ni-camera',
+                            title: 'Display',
+                            path: 'display'
+                        },
+                        {
+                            id: 6,
+                            icon: 'ni-puzzle',
+                            title: 'Redeem',
+                            path: 'redeem'
+                        },
+                        {
+                            id: 7,
+                            icon: 'ni-download-cloud',
+                            title: 'Deposit Enfties',
+                            path: 'deposit-enfties'
+                        }
+                    ]
+                },
+            }
+        }
+    },
+    mounted() {
+        /*  =======================================================
+          User sidebar menu
+          ========================================================== */
         var sidebarMenuOpen = document.querySelector(".menu-toggler-user-open");
         var userSidebar = document.querySelector(".sidebar-user-mobile");
 
         function userSidebarMenu() {
-            if(sidebarMenuOpen) {
-                sidebarMenuOpen.addEventListener("click", function(e) {
+            if (sidebarMenuOpen) {
+                sidebarMenuOpen.addEventListener("click", function (e) {
                     e.preventDefault();
                     userSidebar.classList.add('active');
                 });
@@ -53,10 +103,10 @@ export default {
 
         userSidebarMenu();
 
-        userSidebar.addEventListener('click', function(){
+        userSidebar.addEventListener('click', function () {
             this.classList.remove('active');
         })
 
-  }
+    }
 }
 </script>
