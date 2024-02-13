@@ -18,7 +18,7 @@
                             <td>{{ item.title }}</td>
                             <td>{{ item.timeText }}</td>
                             <td>{{ item.price }}</td>
-                            <td><img :src="item.img" alt=""></td>
+                            <td><img src="../../../images/brand/visa.png" alt=""></td>
                             <td><span class="badge fw-medium" :class="item.badgeClass">{{ item.badgeText }}</span></td>
                             <td><a href="#" class="icon-btn ms-auto" title="Remore"><em class="ni ni-trash"></em></a></td>
                         </tr>
@@ -26,7 +26,7 @@
                 </table>
             </div><!-- end table-responsive -->
             <!-- pagination -->
-            <div class="text-center mt-4 mt-md-5">
+            <div class="text-center mt-4 mt-md-5 ">
                 <Pagination :records="records.length" v-model="page" :per-page="perPage"></Pagination>
             </div>
         </div><!-- end profile-setting-panel-wrap-->
@@ -116,7 +116,7 @@ export default {
                 },
             },
             page: 1,
-            perPage: 6,
+            perPage: 2,
             records: [
                 {
                     id: 4947,

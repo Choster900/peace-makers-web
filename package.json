@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "production": "vite build" 
+        "production": "vite build"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
@@ -25,6 +25,7 @@
     "dependencies": {
         "vue3-clipboard": "^1.0.0",
         "@popperjs/core": "^2.10.2",
-        "swiper": "^11.0.5"
+        "swiper": "^11.0.5",
+        "v-pagination-3": "^0.1.7"
     }
 }

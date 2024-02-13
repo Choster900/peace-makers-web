@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row align-items-center flex" :class="isReverse">
         <div class="col-lg-6 mb-5 mb-lg-0" :class="isClassThree">
-          <img :src="img" alt="" class="w-100" :class="isRound">
+          <img src="../../../images/thumb/nft-img-2.png" alt="" class="w-100" :class="isRound">
         </div><!-- end col-lg-6 -->
         <div class="col-lg-6" :class="isClassTwo">
           <div class="about-content-wrap">
