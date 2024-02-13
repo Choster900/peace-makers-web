@@ -37,6 +37,51 @@ Route::get('/post-detail', function () {
     return Inertia::render('ProductDetail');
 });
 
+Route::get('/about-us', function () {
+    //return Inertia::render('AboutUs');
+    return Inertia::render('AboutUs');
+});
+
+Route::get('/contact', function () {
+    //return Inertia::render('Contact');
+    return Inertia::render('Contact');
+});
+
+Route::get('/purchasesSales', function () {
+    //return Inertia::render('PurchasesSales');
+    return Inertia::render('PurchasesSales');
+});
+
+Route::get('/transactions', function () {
+    //return Inertia::render('Transactions');
+    return Inertia::render('Transactions');
+});
+
+Route::get('/account', function () {
+    //return Inertia::render('Account');
+    return Inertia::render('Account');
+});
+
+Route::get('/paymentMethods', function () {
+    //return Inertia::render('PaymentMethods');
+    return Inertia::render('PaymentMethods');
+});
+
+Route::get('/notifications', function () {
+    //return Inertia::render('Notifications');
+    return Inertia::render('Notifications');
+});
+
+Route::get('/create', function () {
+    //return Inertia::render('Create');
+    return Inertia::render('Create');
+});
+
+Route::get('/createMultiple', function () {
+    //return Inertia::render('CreateMultiple');
+    return Inertia::render('CreateMultiple');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

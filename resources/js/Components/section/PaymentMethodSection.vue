@@ -1,27 +1,31 @@
 <template>
-<div class="col-lg-9 ps-xl-5">
+    <div class="col-lg-9 ps-xl-5">
         <div class="user-panel-title-box">
-            <h3>{{SectionData.paymentMethodData.title }}</h3>
+            <h3>{{ SectionData.paymentMethodData.title }}</h3>
         </div><!-- end user-panel-title-box -->
         <div class="profile-setting-panel-wrap">
             <ul class="nav nav-tabs nav-tabs-s1 nav-tabs-mobile-size" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation" v-for="list in SectionData.paymentMethodData.paymentMethodTabNav" :key="list.id">
-                    <button class="nav-link" :class="list.isActive" id="list.slug" data-bs-toggle="tab" :data-bs-target="list.bsTarget" type="button">{{ list.title }} </button>
+                <li class="nav-item" role="presentation" v-for="list in SectionData.paymentMethodData.paymentMethodTabNav"
+                    :key="list.id">
+                    <button class="nav-link" :class="list.isActive" id="list.slug" data-bs-toggle="tab"
+                        :data-bs-target="list.bsTarget" type="button">{{ list.title }} </button>
                 </li>
             </ul>
             <div class="tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="balances" role="tabpanel" aria-labelledby="balances-tab">
                     <div class="profile-setting-panel">
                         <div class="mb-3 text-black balance-wrap">
-                            <span class="me-3 fw-semibold fs-12">{{SectionData.balanceData.title }}</span>
-                            <span class="fw-medium fs-10">{{SectionData.balanceData.price }}</span>
+                            <span class="me-3 fw-semibold fs-12">{{ SectionData.balanceData.title }}</span>
+                            <span class="fw-medium fs-10">{{ SectionData.balanceData.price }}</span>
                         </div>
                         <div class="mb-2 text-black balance-wrap">
-                            <span class="me-3 fw-semibold fs-12">{{SectionData.balanceData.titleTwo }}</span>
-                            <span class="fw-medium fs-10">{{SectionData.balanceData.priceTwo }}</span>
+                            <span class="me-3 fw-semibold fs-12">{{ SectionData.balanceData.titleTwo }}</span>
+                            <span class="fw-medium fs-10">{{ SectionData.balanceData.priceTwo }}</span>
                         </div>
-                        <p class="fs-13 mb-4">{{SectionData.balanceData.content }}</p>
-                        <a href="#" class="fs-13 mb-2 d-inline-block" data-bs-toggle="modal" data-bs-target="#addBankAccountModal">{{ SectionData.balanceData.btnText }} <em class="ni ni-chevron-right ms-1"></em></a>
+                        <p class="fs-13 mb-4">{{ SectionData.balanceData.content }}</p>
+                        <a href="#" class="fs-13 mb-2 d-inline-block" data-bs-toggle="modal"
+                            data-bs-target="#addBankAccountModal">{{ SectionData.balanceData.btnText }} <em
+                                class="ni ni-chevron-right ms-1"></em></a>
                         <ul class="btns-group d-flex">
                             <li v-for="(btn, i) in SectionData.balanceData.btns" :key="i">
                                 <router-link :to="btn.path" class="btn" :class="btn.btnClass">{{ btn.title }}</router-link>
@@ -33,11 +37,13 @@
                     <div class="profile-setting-panel">
                         <div class="alert alert-info mt-4 d-flex mb-5" role="alert">
                             <svg class="flex-shrink-0 me-3" width="30" height="30" viewBox="0 0 24 24" fill="#75ddf3">
-                                <path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"></path>
+                                <path
+                                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z">
+                                </path>
                             </svg>
-                            <p class="fs-14">{{SectionData.creditCardData.alertText }}</p>
+                            <p class="fs-14">{{ SectionData.creditCardData.alertText }}</p>
                         </div><!-- end alert -->
-                        <h5 class="mb-4">{{SectionData.creditCardData.title }}</h5>
+                        <h5 class="mb-4">{{ SectionData.creditCardData.title }}</h5>
                         <div class="row g-gs">
                             <div class="col-md-6" v-for="item in SectionData.creditCardList" :key="item.id">
                                 <div class="card card-credit card-full">
@@ -54,13 +60,15 @@
                                     </div><!-- card-body -->
                                     <div class="card-footer">
                                         <ul class="btns-group btn-group-2">
-                                            <li><a href="#" class="btn btn-sm bg-danger-dim" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a></li>
+                                            <li><a href="#" class="btn btn-sm bg-danger-dim" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Delete</a></li>
                                         </ul>
                                     </div><!-- card-footer -->
                                 </div><!-- card -->
                             </div><!-- end col -->
                         </div><!-- end row -->
-                        <a href="#" class="btn btn-dark mt-4" data-bs-toggle="modal" data-bs-target="#addNewCardModal">{{SectionData.creditCardData.btnText }}</a>
+                        <a href="#" class="btn btn-dark mt-4" data-bs-toggle="modal" data-bs-target="#addNewCardModal">{{
+                            SectionData.creditCardData.btnText }}</a>
                     </div><!-- end profile-setting-panel -->
                 </div><!-- end tab-pane -->
                 <div class="tab-pane fade" id="prepaid-eth" role="tabpanel" aria-labelledby="prepaid-eth-tab">
@@ -81,7 +89,8 @@
                         <div class="d-flex align-items-center border p-3 rounded-3">
                             <input type="text" class="copy-input copy-input-s1" v-model="message" id="copy-input" readonly>
                             <div class="tooltip-s1">
-                                <button v-clipboard:copy="message" v-clipboard:success="onCopy" class="copy-text" type="button">
+                                <button v-clipboard:copy="message" v-clipboard:success="onCopy" class="copy-text"
+                                    type="button">
                                     <span class="tooltip-s1-text tooltip-text">Copy</span>
                                     <em class="ni ni-copy"></em>
                                 </button>
@@ -94,7 +103,7 @@
                 </div><!-- end tab-pane -->
             </div><!-- end tab-content -->
         </div><!-- end profile-setting-panel-wrap-->
-            <!-- Modal -->
+        <!-- Modal -->
         <div class="modal fade" id="addBankAccountModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -121,8 +130,10 @@
                             <label class="form-label">Account Number</label>
                             <input type="text" class="form-control form-control-s1" placeholder="Account number">
                         </div>
-                        <p class="small mb-2">Make sure your name and bank information match your bank account. Otherwise, your transactions won't go through and you'll be charged a fee.</p>
-                        <p class="small mb-3">By continue, you agree to the EnftyMart's Terms and Service and Privacy Policy</p>
+                        <p class="small mb-2">Make sure your name and bank information match your bank account. Otherwise,
+                            your transactions won't go through and you'll be charged a fee.</p>
+                        <p class="small mb-3">By continue, you agree to the EnftyMart's Terms and Service and Privacy Policy
+                        </p>
                         <a href="#" class="btn btn-dark w-100">Add Account</a>
                     </div><!-- end modal-body -->
                 </div><!-- end modal-content -->
@@ -178,11 +189,13 @@
                     <div class="modal-body text-center">
                         <img :src="SectionData.deleteModal.img" alt="" class="mb-3">
                         <h4 class="modal-tilte mb-2">{{ SectionData.deleteModal.titleTwo }}</h4>
-                        <p class="modal-text">{{ SectionData.deleteModal.content}}</p>
+                        <p class="modal-text">{{ SectionData.deleteModal.content }}</p>
                     </div><!-- end modal-body -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">{{ SectionData.deleteModal.btnText }}</button>
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">{{ SectionData.deleteModal.btnTextTwo }}</button>
+                        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">{{ SectionData.deleteModal.btnText
+                        }}</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">{{
+                            SectionData.deleteModal.btnTextTwo }}</button>
                     </div>
                 </div><!-- end modal-content -->
             </div><!-- end modal-dialog -->
@@ -193,26 +206,146 @@
 
 <script>
 // Import component data. You can change the data in the store to reflect in all component
-import SectionData from '@/store/store.js'
 
 export default {
-  name: 'PaymentMethodSection',
-  data () {
-    return {
-      SectionData
+    name: 'PaymentMethodSection',
+    data() {
+        return {
+            SectionData: {
+                // payment method data
+                paymentMethodData: {
+                    title: 'Payment Methods',
+                    paymentMethodTabNav: [
+                        {
+                            id: 1,
+                            isActive: 'active',
+                            title: 'Balances',
+                            slug: 'balances-tab',
+                            bsTarget: '#balances'
+                        },
+                        {
+                            id: 2,
+                            title: 'Credit Cards',
+                            slug: 'credit-cards-tab',
+                            bsTarget: '#credit-cards'
+                        },
+                        {
+                            id: 3,
+                            title: 'Prepaid ETH',
+                            slug: 'prepaid-eth-tab',
+                            bsTarget: '#prepaid-eth'
+                        }
+                    ],
+                    // edit profile tab mobile
+                    paymentMethodTabNavMobile: [
+                        {
+                            id: 1,
+                            isActive: 'active',
+                            title: 'Balances',
+                            slug: 'balances-tab-mobile',
+                            bsTarget: '#balances-mobile'
+                        },
+                        {
+                            id: 2,
+                            title: 'Credit Cards',
+                            slug: 'credit-cards-tab-mobile',
+                            bsTarget: '#credit-cards-mobile'
+                        },
+                        {
+                            id: 3,
+                            title: 'Prepaid ETH',
+                            slug: 'prepaid-eth-tab-mobile',
+                            bsTarget: '#prepaid-eth-mobile'
+                        }
+                    ],
+                },
+                // balance data
+                balanceData: {
+                    title: 'Balance:',
+                    price: '$330.00',
+                    titleTwo: 'Holds:',
+                    priceTwo: '$330.00',
+                    content: 'There is a $5,000 weekly cash out limit with a bank account.',
+                    btnText: 'Connect A Bank Account',
+                    btns: [
+                        {
+                            title: 'Cash out to Bank',
+                            btnClass: 'btn-outline-primary',
+                            path: ''
+                        },
+                        {
+                            title: 'View Cashout history',
+                            btnClass: 'btn-light',
+                            path: ''
+                        }
+                    ]
+                },
+                // credit card data
+                creditCardData: {
+                    alertText: 'Using a Capital One card may lead to issues completing purchases. Please consider using a different card until further notice.',
+                    title: 'Your Saved Credit Cards:',
+                    content: "You created new card. Transactions status i 'Authorized'",
+                    btnText: 'Add New Card'
+                },
+                // credit card data
+                creditCardList: [
+                    {
+                        id: 1,
+                        title: 'Visa ending in 8203',
+                        timeText: '08/11/2022',
+                        titleTwo: 'Billing address',
+                        addressText: '123 Fake Sreet, 3rd Floor, San Francisco, California, 94105, United States',
+                    },
+                    {
+                        id: 2,
+                        title: 'Mastercard ending in 4720',
+                        timeText: '02/9/2022',
+                        titleTwo: 'Billing address',
+                        addressText: '240 Descano Drive, Level 5, San Francisco, California, 34105, United States',
+                    }
+                ],
+                // prepaid-eth data
+                prepaidData: {
+                    title: 'Pre-Paid ETH Balance',
+                    content: 'Balances can be withdrawn in ETH at anytime',
+                    contentTwo: 'To increase your balance, send ETH to your deposit address below. ETH will be valued at USD market value at time of purchase. Gas fees will be subtracted from withdrawal amounts.',
+                    balances: [
+                        {
+                            id: 1,
+                            title: 'Balance',
+                            price: '2 ETH',
+                            priceTwo: '$330.00 USD'
+                        },
+                        {
+                            id: 2,
+                            title: 'Holds',
+                            price: '2 ETH',
+                            priceTwo: '$330.00 USD'
+                        }
+                    ]
+                },
+                // deleteModal
+                deleteModal: {
+                    title: 'Your item will be deleted permanently!',
+                    titleTwo: 'Your card will be deleted permanently!',
+                    content: 'Are you sure you want to delete item?',
+                    btnText: 'Cancel',
+                    btnTextTwo: 'Ok Delete'
+                },
+            }
+        }
+    },
+    setup() {
+        const message = '0x01948694c481cd38231261095f606c0a9444ce0e';
+        const onCopy = (e) => {
+            let target = e.trigger.querySelector(".tooltip-text");
+            let prevText = target.innerHTML;
+            target.innerHTML = "Copied";
+            setTimeout(function () {
+                target.innerHTML = prevText;
+            }, 1000)
+        }
+        return { message, onCopy }
     }
-  },
-  setup() {
-     const message = '0x01948694c481cd38231261095f606c0a9444ce0e';
-     const onCopy = (e) => {
-        let target = e.trigger.querySelector(".tooltip-text");
-        let prevText = target.innerHTML;
-        target.innerHTML = "Copied";
-        setTimeout(function(){
-        target.innerHTML = prevText;
-        }, 1000)
-    }
-    return { message, onCopy }
-  }
 }
 </script>

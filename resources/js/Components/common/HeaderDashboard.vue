@@ -17,10 +17,10 @@
 </template>
 <script>
 // @ is an alias to /src
-import Logo from '@/components/common/Logo.vue'
-import MobileActionTwo from '@/components/common/MobileActionTwo.vue'
-import HeaderSearch from '@/components/common/HeaderSearch.vue'
-import MenuTwo from '@/components/common/MenuTwo.vue'
+import Logo from '@/components/common/Logo.vue';
+import MobileActionTwo from '@/Components/common/MobileActionTwo.vue';
+import HeaderSearch from '@/components/common/HeaderSearch.vue';
+import MenuTwo from '@/Components/common/MenuTwo.vue';
 
 export default {
   name: 'HeaderDashboard',

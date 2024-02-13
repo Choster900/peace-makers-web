@@ -66,7 +66,6 @@ export default {
                 inputPlaceholderText: 'Search item here...',
                 menuList: {
                     title: 'Home',
-
                 },
                 menuList2: {
                     title: 'Blog',
@@ -201,7 +200,7 @@ export default {
                         {
                             id: 1,
                             title: 'Dashboard',
-                            path: '/offers',
+                            path: '/dashboard',
                             badge: 'Hot',
                             badgeClass: 'badge bg-primary',
                         },
@@ -213,7 +212,7 @@ export default {
                         {
                             id: 3,
                             title: 'Sales and Purchase',
-                            path: '/purchases-sales'
+                            path: '/purchasesSales'
                         },
                         {
                             id: 4,

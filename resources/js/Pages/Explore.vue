@@ -726,7 +726,6 @@ export default {
                     },
                 ],
             },
-
             // creator data
             creatorData: {
                 title: 'Featured Creators',
@@ -899,6 +898,7 @@ export default {
                     }
                 ]
             },
+            // sellBuyData
             sellBuyData: [
                 {
                     id: 1,
