@@ -25,18 +25,18 @@
             </div> -->
         </li>
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList3.title }}</a>
-            <div class="menu-sub">
+            <DropdownLink href="/about-us" class="menu-whitout-link">{{ SectionData.headerData.menuList3.title }}</DropdownLink>
+           <!-- <div class="menu-sub">
                 <ul class="menu-list">
                     <li class="menu-item" v-for="nav in SectionData.headerData.menuList3.navList" :key="nav.id">
                         <DropdownLink class="menu-link">{{ nav.title }}</DropdownLink>
                     </li>
                 </ul>
-            </div>
+            </div>-->
         </li>
         <li class="menu-item has-sub">
-            <a href="#" class="menu-link menu-toggle">{{ SectionData.headerData.menuList4.title }}</a>
-            <div class="menu-sub menu-mega">
+            <DropdownLink href="/contact" class="menu-whitout-link">{{ SectionData.headerData.menuList4.title }}</DropdownLink>
+            <!--<div class="menu-sub menu-mega">
                 <div class="menu-mega-row">
                     <ul class="menu-list menu-list-mega">
                         <li class="menu-item" v-for="nav in SectionData.headerData.menuList4.navList" :key="nav.id">
@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
         </li>
     </ul>
 </template>
@@ -134,8 +134,8 @@ export default {
                     navList: [
                         {
                             id: 1,
-                            title: 'Author Public',
-                            path: '/author'
+                            title: 'About us',
+                            path: '/about-us'
                         },
                         {
                             id: 2,
