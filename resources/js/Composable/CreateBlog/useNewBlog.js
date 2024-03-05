@@ -2,8 +2,6 @@ import { ref } from "vue"
 
 export const useNewBlog = () => {
     const fileInput = ref(null);
-    const courseFile = ref(null);
-    const coursePhoto = ref(null);
     const urlImageFile = ref(null);
 
     const openFileInput = () => {
@@ -34,17 +32,13 @@ export const useNewBlog = () => {
 
     const setImageData = (selectedFile) => {
         console.log(selectedFile);
-        courseFile.value = selectedFile;
         urlImageFile.value = URL.createObjectURL(selectedFile);
-        coursePhoto.value = selectedFile.name
         console.log('Archivo seleccionado:', selectedFile.name);
     };
 
     return {
         fileInput,
-        courseFile,
         handleDrop,
-        coursePhoto,
         urlImageFile,
         openFileInput,
         handleDragOver,
