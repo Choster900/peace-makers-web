@@ -17,10 +17,10 @@ use Inertia\Inertia;
 
 Route::get('/test', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+        'canLogin'       => Route::has('login'),
+        'canRegister'    => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion'     => PHP_VERSION,
     ]);
 });
 Route::get('/', function () {
@@ -80,6 +80,11 @@ Route::get('/create', function () {
 Route::get('/createMultiple', function () {
     //return Inertia::render('CreateMultiple');
     return Inertia::render('CreateMultiple');
+});
+
+Route::get('/new-blog', function () {
+    //return Inertia::render('CreateMultiple');
+    return Inertia::render('BlogForm');
 });
 
 Route::middleware([

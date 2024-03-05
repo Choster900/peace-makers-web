@@ -1,14 +1,16 @@
 <template>
     <div class="card card-full">
         <div class="card-image">
-            <img src="../../../images/thumb/nft-2.jpg" class="card-img-top" alt="art image">
+            <DropdownLink href="post-detail">
+                <img src="../../../images/thumb/nft-2.jpg" class="card-img-top" alt="art image">
+            </DropdownLink>
         </div>
         <div class="card-body p-4">
             <h5 class="card-title text-truncate mb-0">{{ product.title }}</h5>
             <div class="card-author mb-1 d-flex align-items-center">
                 <span class="me-1 card-author-by text-xs">By</span>
                 <div class="custom-tooltip-wrap">
-                    <DropdownLink href="/product-detail"
+                    <DropdownLink href="post-detail"
                         class="text-xs custom-tooltip author-link text-slate-600 font-semibold">{{ product.author }}
                     </DropdownLink>
                     <div class="card-generic custom-tooltip-dropdown">
@@ -24,7 +26,7 @@
                         <h6 class="author-name mb-1">{{ product.authorName }}</h6>
                         <p class="author-desc smaller mb-3">{{ product.desc }}</p>
 
-                        <DropdownLink :to="product.authorLink" class="btn btn-sm bg-dark-dim">Ver</DropdownLink>
+                        <DropdownLink href="post-detail" class="btn btn-sm bg-dark-dim">Ver</DropdownLink>
                     </div><!-- end dropdown-menu -->
                 </div><!-- end custom-tooltip-wrap -->
             </div><!-- end card-author -->
@@ -33,14 +35,13 @@
                     <span class="card-price-title">Hace: </span>
                     <span class="card-price-number ">2 dias</span>
                 </div>
-              <!--   <div class="text-sm-end">
+                <div class="text-sm-end">
                     <span class="card-price-title">Current bid</span>
-                    <span class="card-price-number md:block">{{ product.priceTwo }} ETH</span>
-                </div> -->
+                </div>
             </div><!-- end card-price-wrap -->
 
         </div><!-- end card-body -->
-        <DropdownLink href="/product-detail" class="details"></DropdownLink>
+        <DropdownLink href="post-detail" class="details"></DropdownLink>
     </div><!-- end card -->
 </template>
 <script>
@@ -74,14 +75,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.details {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+
 
 .author-link,
 .card-price-wrap {

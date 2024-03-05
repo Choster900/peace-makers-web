@@ -141,7 +141,8 @@
                     </div><!-- end col -->
                 </div><!-- end row -->
             </div><!-- .container -->
-        </section><!-- end item-detail-section -->
+        </section>
+        <!-- end item-detail-section -->
         <!-- Related product -->
         <RelatedProduct></RelatedProduct>
         <!-- Footer  -->

@@ -5,7 +5,7 @@
             <!-- Header main -->
             <HeaderMain isTransparent="is-transparent"></HeaderMain>
         </header>
-        <!-- Explore section  -->
+        <!-- Explore section  blog-->
         <ExploreSection></ExploreSection>
         <!-- top creators -->
         <TopCreators classname="section-space-t"></TopCreators>
