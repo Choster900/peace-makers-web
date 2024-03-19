@@ -21,13 +21,13 @@
                                 style="display: none;" @change="handleFileChange">
                             <div class="item-detail-tab">
 
-                                <ul class="nav nav-tabs nav-tabs-s1" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" type="button">Button Option 1
+                                <ul class="nav nav-tabs nav-tabs-s1">
+                                    <li class="nav-item">
+                                        <button class="nav-link" type="button">Button Option 1
                                         </button>
                                     </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" type="button">Button Option 2
+                                    <li class="nav-item">
+                                        <button class="nav-link" type="button">Button Option 2
                                         </button>
                                     </li>
                                 </ul>
@@ -39,14 +39,14 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="item-detail-content mt-4 mt-lg-0">
-                            <div class="flex">
-                                <h1 class="item-detail-title mb-2">Lorem ipsum dolor sit amet consectetur.</h1>
+                            <div class="flex justify-between">
+                                <h1 v-if="!EnableForEdit" class="item-detail-title mb-2">{{ tituloBlog }}</h1>
 
-                                <!-- <input type="text" id="text"
+                                <input type="text" id="text" v-else v-model="tituloBlog"
                                     class="mb-2 shadow-sm rounded-md w-full text-black font-medium  border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    placeholder="Nombre de la Publicacion" required> -->
+                                    placeholder="Nombre de la Publicacion" required>
 
-                                <lord-icon src="https://cdn.lordicon.com/wkvacbiw.json" trigger="click"
+                                <lord-icon src="https://cdn.lordicon.com/wkvacbiw.json" trigger="click" @click="EnableForEdit = !EnableForEdit"
                                     class="cursor-pointer" style="width:50px;height:50px">
                                 </lord-icon>
                             </div>
@@ -61,16 +61,16 @@
                             </div>
 
 
-                            <p class="item-detail-text mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            <p class="item-detail-text mb-4" v-if="!EnableForEdit">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                 Corporis iste reprehenderit voluptatibus fuga cum doloribus in quae accusamus,
                                 voluptates,
                                 impedit dignissimos eius itaque atque sint hic veritatis quisquam magnam officia.</p>
 
-                            <!-- <textarea placeholder='Message' rows="6" name='message'
-                                class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea> -->
+                            <textarea placeholder='Message' rows="6" name='message' v-else
+                                class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
 
 
-                            <div class="item-credits">
+                            <div class="item-credits pb-3">
                                 <div class="row g-4">
                                     <div class="col-xl-6">
                                         <div class="card-media card-media-s1">
@@ -88,11 +88,16 @@
 
                                 </div>
                             </div>
+                            <button
+                                class="middle none center w-full rounded-md bg-[#0E3C55] py-2 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                data-ripple-light="true">
+                                Terminar y guardar
+                            </button>
                         </div>
                     </div>
 
-                    <div class="tab-content mt-3" id="myTabContent">
-                        <div class="tab-pane fade show active" id="owners" role="tabpanel" aria-labelledby="owners-tab">
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane fade show active" aria-labelledby="owners-tab">
                             <div class="item-detail-tab-wrap">
                                 <div class="card-media card-media-s2 mb-3">
                                     contenido 1
@@ -111,7 +116,6 @@
 import HeaderMain from '@/Layouts/HeaderMain.vue';
 import { useNewBlog } from '@/Composable/CreateBlog/useNewBlog'
 import DropdownLink from '@/Components/DropdownLink.vue';
-import { useHandleState } from '@/Composable/CreateBlog/useHandleState';
 
 export default {
     components: { HeaderMain, DropdownLink },
@@ -122,19 +126,24 @@ export default {
             urlImageFile,
             openFileInput,
             handleDragOver,
-            handleFileChange
+            handleFileChange,EnableForEdit,idBlog,
+        tituloBlog,descripcionBlog,fotoPrincipalBlog,contenidoDescripcionBlog,numeroVisitasBlog,
+        fechaReflejadaBlog,estadoBlog
+
         } = useNewBlog()
 
-        const { stateSecciont } = useHandleState()
 
         return {
             fileInput,
             handleDrop,
+            EnableForEdit,
             urlImageFile,
             openFileInput,
             handleDragOver,
-            handleFileChange,
-            stateSecciont,
+            handleFileChange,idBlog,
+        tituloBlog,descripcionBlog,fotoPrincipalBlog,contenidoDescripcionBlog,numeroVisitasBlog,
+        fechaReflejadaBlog,estadoBlog
+
         }
     }
 }

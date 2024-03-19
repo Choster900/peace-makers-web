@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -84,8 +85,11 @@ Route::get('/createMultiple', function () {
 
 Route::get('/new-blog', function () {
     //return Inertia::render('CreateMultiple');
-    return Inertia::render('BlogForm');
+    return Inertia::render('CreateBlog');
 });
+
+// ! Working on it by sergio
+Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
 
 Route::middleware([
     'auth:sanctum',
