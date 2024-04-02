@@ -8,6 +8,7 @@ import '../assets/css/style.css';
 
 import VueClipboard from 'vue3-clipboard'
 
+
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -25,6 +26,8 @@ createInertiaApp({
                 autoSetContainer: true,
                 appendToBody: true,
             })
+           // .use(PrimeVue)
+           // .use(Dropdown)
             .use(ZiggyVue)
             .mount(el);
     },

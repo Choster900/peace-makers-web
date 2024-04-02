@@ -90,6 +90,7 @@ Route::get('/new-blog', function () {
 
 // ! Working on it by sergio
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
+Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('addNewBlog');
 
 Route::middleware([
     'auth:sanctum',

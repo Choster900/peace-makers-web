@@ -95,8 +95,8 @@
                                 </div><!-- end switch-wrap -->
                             </div><!-- end form-item -->
                             <div class="form-item mb-4">
-                                <h5 class="mb-1">Choose collection</h5>
-                                <p class="form-text mb-3">This is the collection where your item will appear.</p>
+                                <h5 class="mb-1">Selecciona Categoria</h5>
+                                <p class="form-text mb-3">La categoria que selecciona se clasifica luego.</p>
                                 <v-select class="generic-select" v-model="selected" :options="options"></v-select>
                             </div><!-- end form-item -->
                             <div class="form-item mb-4">

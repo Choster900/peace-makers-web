@@ -23,9 +23,12 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "vue3-clipboard": "^1.0.0",
         "@popperjs/core": "^2.10.2",
+        "primevue": "^3.50.0",
+        "sweetalert2": "^11.10.7",
         "swiper": "^11.0.5",
-        "v-pagination-3": "^0.1.7"
+        "v-pagination-3": "^0.1.7",
+        "vue-select": "^4.0.0-beta.1",
+        "vue3-clipboard": "^1.0.0"
     }
 }

@@ -12,7 +12,9 @@
                     <div class="col-lg-8">
                         <div class="section-head-sm">
                             <router-link :to="SectionData.createMultipleData.path" class="btn-link fw-semibold"><em
-                                    class="ni ni-arrow-left"></em> {{ SectionData.createMultipleData.btnText }}</router-link>
+                                    class="ni ni-arrow-left"></em> {{ SectionData.createMultipleData.btnText
+                                }}
+                            </router-link>
                             <h1 class="mt-2">Crea un nuevo blog</h1>
                         </div>
                     </div><!-- end col -->
@@ -22,9 +24,16 @@
                                 <h5 class="mb-3">Subir archivo</h5>
                                 <div class="file-upload-wrap">
                                     <p class="file-name mb-4" id="file-name">PNG, GIF, WEBP, MP4 or MP3. Max 100mb.</p>
-                                    <input id="file-upload" class="file-upload-input" data-target="file-name" type="file"
-                                        hidden>
-                                    <label for="file-upload" class="input-label btn btn-dark">Selecciona archivo</label>
+                                    <!-- <input id="file-upload" class="file-upload-input" data-target="file-name"
+                                        type="file" hidden> -->
+                                    <input type="file" ref="fileInput"
+                                        accept="image/gif,image/jpeg,image/png,image/jpg,image" style="display: none;"
+                                        @change="handleFileChange">
+                                    <label for="file-upload" class="input-label btn btn-dark" @click="openFileInput">
+                                        Selecciona archivo</label>
+                                    <span class="block pt-2">
+                                        {{ fileName || 'Ningun archivo seleccionado' }}
+                                    </span>
                                 </div>
                             </div><!-- end form-item -->
                             <div class="form-item mb-4">
@@ -32,8 +41,8 @@
                                 <ul class="row g-4 nav nav-tabs nav-tabs-s2" id="myTab" role="tablist">
                                     <li class="nav-item col-6 col-sm-4 col-lg-3" role="presentation"
                                         v-for="list in SectionData.selectMethodTabNavTwo" :key="list.id">
-                                        <button class="nav-link" :class="list.isActive" :id="list.slug" data-bs-toggle="tab"
-                                            :data-bs-target="list.bsTarget" type="button">
+                                        <button class="nav-link" :class="list.isActive" :id="list.slug"
+                                            data-bs-toggle="tab" :data-bs-target="list.bsTarget" type="button">
                                             <em class="ni nav-link-icon" :class="list.icon"></em>
                                             <span class="nav-link-title mt-1 d-block">{{ list.title }}</span>
                                         </button>
@@ -45,78 +54,30 @@
                                         <div class="form-create-tab-wrap">
                                             <label class="mb-2 form-label">Titulo</label>
                                             <input type="text" class="form-control form-control-s1"
-                                                placeholder="Ingrese un titulo para el blog">
-                                        </div><!-- end form-create-tab-wrap -->
-                                    </div><!-- end tab-pane -->
-                                    <div class="tab-pane fade" id="timed-auction" role="tabpanel"
-                                        aria-labelledby="timed-auction-tab">
-                                        <div class="form-create-tab-wrap">
-                                            <label class="mb-2 form-label">Minimum bid</label>
-                                            <input type="text" class="form-control form-control-s1"
-                                                placeholder="Enter Minimum bid">
-                                            <div class="row mt-3">
-                                                <div class="col-lg-6">
-                                                    <label class="mb-2 form-label">Starting date</label>
-                                                    <input type="date" class="form-control form-control-s1">
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6">
-                                                    <label class="mb-2 form-label">Expiration date</label>
-                                                    <input type="date" class="form-control form-control-s1">
-                                                </div><!-- end col-lg-6 -->
-                                            </div><!-- end row -->
-                                        </div><!-- end form-create-tab-wrap -->
-                                    </div><!-- end tab-pane -->
-                                    <div class="tab-pane fade" id="open-for-bids" role="tabpanel"
-                                        aria-labelledby="open-for-bids-tab">
-                                        <div class="form-create-tab-wrap">
-                                            <label class="mb-2 form-label">Minimum bid</label>
-                                            <input type="text" class="form-control form-control-s1"
-                                                placeholder="Enter Minimum bid">
+                                                placeholder="Ingrese un titulo para el blog" v-model="tituloBlog">
                                         </div><!-- end form-create-tab-wrap -->
                                     </div><!-- end tab-pane -->
                                 </div><!-- end tab-content -->
-                            </div><!-- end form-item -->
-                            <div class="form-item mb-3">
-                                <div class="switch-wrap">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="me-2">
-                                            <h5 class="mb-1">Unlock once purchased</h5>
-                                            <p class="form-text">Content will be unlocked after successful transaction</p>
-                                        </div>
-                                        <div class="form-check form-switch form-switch-s1">
-                                            <input class="form-check-input checkbox-switcher"
-                                                data-target="switch-content-unlock" type="checkbox">
-                                        </div><!-- end form-check -->
-                                    </div><!-- end d-flex -->
-                                    <div class="switch-content-unlock mt-4" id="switch-content-unlock">
-                                        <input type="text" name="text" class="form-control form-control-s1"
-                                            placeholder="Access key, code to redeem or link to a file...">
-                                    </div>
-                                </div><!-- end switch-wrap -->
-                            </div><!-- end form-item -->
+                            </div>
                             <div class="form-item mb-4">
-                                <h5 class="mb-1">Choose collection</h5>
+                                <h5 class="mb-1">Selecciona categoria</h5>
                                 <p class="form-text mb-3">This is the collection where your item will appear.</p>
-                                <v-select class="generic-select" v-model="selected" :options="options"></v-select>
-                            </div><!-- end form-item -->
+                                <select class="form-select" aria-label="Default select example" v-model="idCategory">
+                                    <option value="1" v-for="(cat,i) in optionsCategories" :key="i">{{ cat.nombre_categoria }}</option>
+
+                                </select>
+                            </div>
+                            <!-- end form-item -->
                             <div class="form-item mb-4">
-                                <div class="mb-4">
-                                    <label class="mb-2 form-label">Title</label>
-                                    <input type="text" class="form-control form-control-s1"
-                                        placeholder="e. g. Redeemable T-Shirt with logo">
-                                </div>
+
                                 <div class="mb-4">
                                     <label class="mb-2 form-label">Description</label>
                                     <textarea name="message" class="form-control form-control-s1"
+                                        v-model="descriptionBlog"
                                         placeholder="e. g. After purchasing you’ll be able to get the real T-Shirt"></textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="mb-2 form-label">Royalties</label>
-                                    <input type="text" class="form-control form-control-s1" placeholder="e.g 10%">
-                                    <p class="form-text mt-1">Suggested: 0, 10%, 20%, 30%. Maximum is 70%</p>
-                                </div>
                             </div><!-- end form-item -->
-                            <button class="btn btn-dark" type="button">Create Item</button>
+                            <button class="btn btn-dark" type="button" @click="saveNewBlog">Create Item</button>
                         </form>
                     </div><!-- endn col -->
                 </div><!-- row-->
@@ -131,15 +92,129 @@
 // Import component data. You can change the data in the store to reflect in all component
 import HeaderMain from '@/Layouts/HeaderMain.vue';
 import Footer from '@/Layouts/Footer.vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+// vue select
+import vSelect from 'vue-select'
+import "vue-select/dist/vue-select.css";
+import Swal from 'sweetalert2'
+import Dropdown from 'primevue/dropdown';
 
 export default {
     name: 'CreateMultiple',
     components: {
         HeaderMain,
-        Footer
+        Footer,
+        vSelect
     },
-    data() {
+    setup() {
+
+        const fileInput = ref(null);
+        const blogFile = ref(null);
+        const fileName = ref(null);
+        const urlImageFile = ref(null);
+        const tituloBlog = ref(null);
+        const descriptionBlog = ref(null);
+        const optionsCategories = ref(null);
+        const idCategory = ref(null);
+
+        const openFileInput = () => {
+            fileInput.value.click();
+        };
+
+        const handleFileChange = () => {
+            const selectedFile = fileInput.value.files[0];
+            if (selectedFile) {
+                setImageData(selectedFile);
+            }
+        };
+
+        const handleDragOver = (event) => {
+            event.preventDefault();
+        };
+
+        const handleDrop = (event) => {
+            event.preventDefault();
+            const selectedFile = event.dataTransfer.files[0];
+            if (selectedFile) {
+                setImageData(selectedFile);
+            }
+            fileInput.value = null;
+        };
+
+        const setImageData = (selectedFile) => {
+            blogFile.value = selectedFile;
+            urlImageFile.value = URL.createObjectURL(selectedFile);
+            fileName.value = selectedFile.name
+            console.log('Archivo seleccionado:', selectedFile.name);
+        };
+
+
+        const saveNewBlog = async () => {
+            // Mostrar confirmación al usuario
+            const confirmed = await Swal.fire({
+                title: '¿Está seguro de crear un nuevo blog?',
+                icon: 'question',
+                iconHtml: '❓',
+                confirmButtonText: 'Si, Agregar el blog',
+                confirmButtonColor: '#141368',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true,
+                showCloseButton: true
+            });
+
+            if (confirmed.isConfirmed) {
+                axios.post('/addNewBlog', {
+                    blogFile: blogFile.value,
+                    fileName: fileName.value,
+                    idCategory: idCategory.value,
+                    tituloBlog: tituloBlog.value,
+                    descriptionBlog: descriptionBlog.value,
+                }, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+
+                        console.error(error);
+                    });
+            }
+        }
+
+        const getCategoriesBlog = async () => {
+    try {
+        const response = await axios.get('getCategoriesBlog');
+        console.log(response);
+        optionsCategories.value = response.data
+    } catch (error) {
+        console.error(`Error fetching categories: ${error}`);
+        return null;
+    }
+};
+
+        onMounted( () => {
+            getCategoriesBlog()
+        })
+
+
         return {
+            fileInput,
+            blogFile,
+            handleDrop,
+            fileName,
+            urlImageFile,
+            openFileInput,
+            handleDragOver,
+            handleFileChange,
+            tituloBlog,
+            descriptionBlog,
+            saveNewBlog,
+            idCategory,
+            optionsCategories,
             SectionData: {
                 // multiple data
                 createMultipleData: {
@@ -160,52 +235,6 @@ export default {
             ]
         }
     },
-    mounted() {
-        /*==============File upload =============== */
-        function fileUpload(selector) {
-            let elem = document.querySelectorAll(selector);
-            if (elem.length > 0) {
-                elem.forEach(item => {
-                    item.addEventListener("change", function () {
-                        var target = document.getElementById(item.dataset.target);
-                        var allowedExtensions = ["jpg", "png", "gif", "webp", "mp4", "mp3"];
-                        var fileExtension = this.value.split(".").pop();
-                        var lastDot = this.value.lastIndexOf('.');
-                        var ext = this.value.substring(lastDot + 1);
-                        var extTxt = target.value = ext;
 
-                        if (!allowedExtensions.includes(fileExtension)) {
-                            alert(extTxt + " file type not allowed, Please upload jpg, png, gif, webp, mp4 or mp3 file");
-                            target.innerHTML = "Please upload jpg, png, gif, webp, mp4 or mp3 file";
-                        } else {
-                            target.innerHTML = item.files[0].name;
-                        }
-                    })
-                })
-            }
-        }
-
-        fileUpload(".file-upload-input");
-
-        /*  ============== Unlock once purchased Checkbox switcher ============= */
-        function checkboxSwitcher(selector) {
-            let elem = document.querySelectorAll(selector);
-            if (elem.length > 0) {
-                elem.forEach(item => {
-                    item.addEventListener("change", function () {
-                        let target = document.getElementById(item.dataset.target);
-                        if (this.checked) {
-                            target.classList.add("is-shown");
-                        } else {
-                            target.classList.remove("is-shown");
-                        }
-                    });
-                });
-            }
-        }
-
-        checkboxSwitcher(".checkbox-switcher");
-
-    }
 }
 </script>

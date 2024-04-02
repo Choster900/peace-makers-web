@@ -13,10 +13,6 @@ class Blog extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id_blog',
-        'id_seccion_informativa',
-        'id_galeria',
-        'id_involucrados',
         'id_categoria_blog',
         'titulo_blog',
         'descripcion_blog',
