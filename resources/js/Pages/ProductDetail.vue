@@ -10,74 +10,48 @@
                 <div class="row">
                     <div class="col-lg-6 pe-xl-5">
                         <div class="item-detail-content">
-                            <div class="item-detail-img-container mb-4">
-                                <img src="../../images/thumb/nft-lg.jpg" alt="" class="w-100 rounded-3">
+                            <div class="item-detail-img-container mb-4 cursor-pointer" @click="openFileInput">
+                                <img :src="blog.foto_principal_blog" alt="" class="w-100 rounded-3"
+                                    v-if="!urlImageFile">
+                                <img v-else class="w-100 rounded-3" :src="urlImageFile" alt="Feed 01">
+                                <!-- <div class="cursor-pointer absolute inset-0 h-full"></div> -->
                             </div>
-                            <!-- end item-detail-img-container -->
+
+                            <!-- <input type="file" ref="fileInput" accept="image/gif,image/jpeg,image/png,image/jpg,image"
+                                style="display: none;" @change="handleFileChange"> -->
                             <div class="item-detail-tab">
 
-                                <ul class="nav nav-tabs nav-tabs-s1" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation"
-                                        v-for="list in SectionData.itemDetailData.itemDetailTabNav" :key="list.id">
-                                        <button class="nav-link" :class="list.isActive" :id="list.slug" data-bs-toggle="tab"
-                                            :data-bs-target="list.bsTarget" type="button">{{ list.title }}a </button>
+                                <ul class="nav nav-tabs nav-tabs-s1">
+                                    <li class="nav-item">
+                                        <button class="nav-link" type="button">Button Option 1
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link" type="button">Button Option 2
+                                        </button>
                                     </li>
                                 </ul>
-                                <div class="tab-content mt-3" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="owners" role="tabpanel"
-                                        aria-labelledby="owners-tab">
-                                        <div class="item-detail-tab-wrap">
-                                            <div class="card-media card-media-s2 mb-3"
-                                                v-for="item in SectionData.itemDetailData.itemDetailOwnerList"
-                                                :key="item.id">
-                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
-                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
-                                                </DropdownLink>
-                                                <div class="card-media-body text-truncate">
-                                                    <p class="fw-semibold text-truncate"><a :href="item.path"
-                                                            class="text-black">{{ item.title }}</a></p>
-                                                    <p class="small">{{ item.subTitle }}</p>
-                                                </div>
-                                            </div><!-- end card -->
-                                        </div><!-- end item-detail-tab-wrap -->
-                                    </div><!-- end tab-pane -->
-                                    <div class="tab-pane fade" id="bids" role="tabpanel" aria-labelledby="bids-tab">
-                                        <div class="item-detail-tab-wrap">
-                                            <div class="card-media card-media-s2 mb-3"
-                                                v-for="item in SectionData.itemDetailData.itemDetailBidsList"
-                                                :key="item.id">
-                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
-                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
-                                                </DropdownLink>
-                                                <div class="card-media-body text-truncate">
-                                                    <p class="fw-semibold text-black text-truncate">{{ item.title }}</p>
-                                                    <p class="small">{{ item.date }}</p>
-                                                </div>
-                                            </div><!-- end card -->
-                                        </div><!-- end item-detail-tab-wrap -->
-                                    </div><!-- end tab-pane -->
-                                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-                                        <div class="item-detail-tab-wrap">
-                                            <div class="card-media card-media-s2 mb-3"
-                                                v-for="item in SectionData.itemDetailData.itemDetailHistoryList"
-                                                :key="item.id">
-                                                <DropdownLink class="card-media-img flex-shrink-0 d-block">
-                                                    <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
-                                                </DropdownLink>
-                                                <div class="card-media-body text-truncate">
-                                                    <p class="fw-semibold text-black text-truncate">{{ item.title }}</p>
-                                                    <p class="small text-truncate">{{ item.subTitle }}</p>
-                                                </div>
-                                            </div><!-- end card -->
-                                        </div><!-- end item-detail-tab-wrap -->
-                                    </div><!-- end tab-pane -->
-                                </div>
                             </div>
-                        </div><!-- end item-detail-content -->
-                    </div><!-- end col -->
+                        </div>
+                    </div>
+
+                    <!--  {{ blog }} -->
                     <div class="col-lg-6">
                         <div class="item-detail-content mt-4 mt-lg-0">
-                            <h1 class="item-detail-title mb-2">Lorem ipsum dolor sit amet consectetur.</h1>
+                            <div class="flex justify-between">
+                                <h1 v-if="!EnableForEdit" class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
+
+                                <input type="text" id="text" v-else v-model="blog.titulo_blog"
+                                    class="mb-2 shadow-sm rounded-md w-full text-black font-medium  border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                    placeholder="Nombre de la Publicacion" required>
+
+                                <lord-icon src="https://cdn.lordicon.com/wkvacbiw.json" trigger="click"
+                                    @click="EnableForEdit = !EnableForEdit" class="cursor-pointer"
+                                    style="width:50px;height:50px">
+                                </lord-icon>
+                            </div>
+
+
                             <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
                                 <span class="item-detail-text-meta">lorem</span>
                                 <span class="dot-separeted"></span>
@@ -85,358 +59,277 @@
                                 <span class="dot-separeted"></span>
                                 <span class="item-detail-text-meta">dolor</span>
                             </div>
-                            <p class="item-detail-text mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Corporis iste reprehenderit voluptatibus fuga cum doloribus in quae accusamus, voluptates,
-                                impedit dignissimos eius itaque atque sint hic veritatis quisquam magnam officia.</p>
-                            <div class="item-credits">
+
+
+                            <p class="item-detail-text mb-4" v-if="!EnableForEdit">{{ blog.descripcion_blog }}</p>
+
+                            <textarea placeholder='Message' rows="6" name='message' v-else
+                                v-model="blog.descripcion_blog"
+                                class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
+
+
+                            <div class="item-credits pb-3">
                                 <div class="row g-4">
-                                    <div class="col-xl-6" v-for="item in SectionData.itemDetailData.itemDetailList"
-                                        :key="item.id">
+                                    <div class="col-xl-6">
                                         <div class="card-media card-media-s1">
                                             <DropdownLink class="card-media-img flex-shrink-0 d-block">
                                                 <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
                                             </DropdownLink>
-                                            <div class="card-media-body">
-                                                <DropdownLink class="fw-semibold">{{ item.title
-                                                }}</DropdownLink>
-                                                <p class="fw-medium small">{{ item.subTitle }}</p>
-                                            </div>
-                                        </div><!-- end card -->
-                                    </div><!-- end col-->
-                                    <div class="col-xl-12" v-for="item in SectionData.itemDetailData.itemDetailListTwo"
-                                        :key="item.id">
-                                        <div class="card-media card-media-s1">
-                                            <DropdownLink class="card-media-img flex-shrink-0 d-block">
-                                                <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
-                                            </DropdownLink>
-                                            <div class="card-media-body">
-                                                <p class="fw-semibold text-black">{{ item.title }}</p>
-                                                <span class="fw-medium small">{{ item.subTitle }}</span>
-                                            </div>
-                                        </div><!-- end card -->
-                                    </div><!-- end col-->
-                                </div><!-- end row -->
-                            </div><!-- end row -->
-                            <div class="item-detail-btns mt-4">
-                                <ul class="btns-group d-flex">
-                                    <li class="flex-grow-1">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#placeBidModal"
-                                            class="btn btn-dark d-block">{{ SectionData.itemDetailData.btnText }}</a>
-                                    </li>
-                                    <li class="flex-grow-1">
-                                        <div class="dropdown">
-                                            <a href="#" class="btn bg-dark-dim d-block" data-bs-toggle="dropdown">{{
-                                                SectionData.itemDetailData.btnTextTwo }}</a>
-                                            <div class="dropdown-menu card-generic p-2 keep-open w-100 mt-1">
-                                                <DropdownLink  class="dropdown-item card-generic-item"
-                                                    v-for="(icon, i) in SectionData.socialShareList" :key="i"><em
-                                                        class="ni me-2" :class="icon.btnClass"></em>{{ icon.title
-                                                        }}</DropdownLink>
+                                            <div class="card-media-body *:text-xs">
+                                                <DropdownLink href="/"
+                                                    class="fw-semibold hover:text-indigo-600 cursor-pointer">
+                                                    @SERGIO_LOPEZ</DropdownLink>
+                                                <p class="fw-medium small">SERGIO ADONAY LOPEZ MEJIA</p>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                            </div><!-- end item-detail-btns -->
-                        </div><!-- end item-detail-content -->
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- .container -->
-        </section>
-        <!-- end item-detail-section -->
-        <!-- Related product -->
-        <RelatedProduct></RelatedProduct>
-        <!-- Footer  -->
-        <Footer classname="bg-dark on-dark"></Footer>
-        <!-- Modal -->
-        <div class="modal fade" id="placeBidModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">{{ SectionData.placeBidModal.title }}</h4>
-                        <button type="button" class="btn-close icon-btn" data-bs-dismiss="modal" aria-label="Close">
-                            <em class="ni ni-cross"></em>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button
+                                class="middle none center w-full rounded-md bg-[#0E3C55] py-2 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                data-ripple-light="true">
+                                Terminar y guardar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show active mt-5" aria-labelledby="owners-tab">
+                        <div class="item-detail-tab-wrap">
+                            <div class="card-media card-media-s2 mb-3">
+                                <div class="flex  items-start justify-center bg-white px-6 md:px-40">
+                                    <div class="space-y-6 border-l-2 border-dashed">
+
+                                        <div class="relative w-full" v-for="(item, index) in arraySeccionInformativa">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                class="absolute -top-0.5 z-10 -ml-3.5 h-7 w-7 rounded-full text-blue-500">
+                                                <path fill-rule="evenodd"
+                                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <div class="ml-6">
+                                                <h4 class="font-bold text-blue-500">{{ item.nombre_seccion_informativa }}</h4>
+
+                                                <input type="text" id="text" v-model="item.nombre_seccion_informativa"
+                                                    @input="updateSeccionInformativa(item.id_seccion_informativa, 'nombre_seccion_informativa', $event.target.value)"
+                                                    class="mb-2 shadow-sm rounded-md w-full h-10 text-black font-medium border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                                    placeholder="Nombre de la Publicacion" required>
+
+
+                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">Lorem ipsum dolor
+                                                    sit amet, consectetur adipisicing elit. Aspernatur, soluta dolorum
+                                                    fuga blanditiis, eos quia cum non atque expedita at corrupti dicta
+                                                    deserunt? Amet vitae quia nam veniam distinctio maiores.</p>
+                                                <span class="mt-1 block text-sm font-semibold text-blue-500">2007</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-52 py-10">
+
+                        <button class="border-[4px] px-20 border-dashed w-full flex justify-center gap-2 items-center"
+                            @click="modalIsOpen = true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-10">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+
+                            <span class="">
+                                AGREGAR NUEVA SECCION INFORMATICA
+
+                            </span>
                         </button>
-                    </div><!-- end modal-header -->
-                    <div class="modal-body">
-                        <p class="mb-3" v-html="SectionData.placeBidModal.content"></p>
-                        <div class="mb-3">
-                            <label class="form-label">{{ SectionData.placeBidModal.labelText }}</label>
-                            <input type="text" class="form-control form-control-s1" placeholder="Enter bid">
+                    </div>
+
+                    <Modal :show="modalIsOpen" :maxWidth="xl" :closeable="true">
+                        <div class="relative m-3">
+                            <button type="button" @click="modalIsOpen = false"
+                                class="absolute top-0 right-0 mt-1 mr-1 text-gray-600 hover:text-gray-800 focus:outline-none">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <div class="mb-4">
+                                <h2 class="text-lg font-semibold text-gray-800">Agrega categoria</h2>
+                            </div>
+                            <!-- Resto del contenido del modal -->
+
+                            <div class="form-item mb-4">
+                                <h5 class="mb-1">Selecciona categoría</h5>
+                                <p class="form-text mb-3">Selecciona categoría para la nueva sección informativa.</p>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="1">Título con texto</option>
+                                    <option value="2">Título, texto y una imagen</option>
+                                    <option value="3">Título, texto con un enlace informativo</option>
+                                    <option value="4">Otros</option>
+                                </select>
+                            </div>
+                            <div class="flex justify-between">
+                                <button @click="modalIsOpen = false"
+                                    class="px-4 py-2 text-sm font-medium text-gray- 00 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300">Discard</button>
+                                <button @click="clickForPushToArraySecction"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">Apply
+                                    Changes</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" v-html="SectionData.placeBidModal.labelTextTwo"></label>
-                            <input type="text" class="form-control form-control-s1" value="1">
-                        </div>
-                        <ul class="total-bid-list mb-4">
-                            <li v-for="(list, i) in SectionData.placeBidModal.totalBidList" :key="i"><span>{{ list.title
-                            }}</span> <span>{{ list.price }}</span></li>
-                        </ul>
-                        <a :href="SectionData.placeBidModal.btnLink" class="btn btn-dark d-block">{{
-                            SectionData.placeBidModal.btnText }}</a>
-                    </div><!-- end modal-body -->
-                </div><!-- end modal-content -->
-            </div><!-- end modal-dialog -->
-        </div><!-- end modal-->
-    </div><!-- end page-wrap -->
+
+                    </Modal>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <pre>
+    {{ blog }}
+
+    {{ arraySeccionInformativa }}
+    </pre>
 </template>
 
 <script>
-// Import component data. You can change the data in the store to reflect in all component
 import HeaderMain from '@/Layouts/HeaderMain.vue';
-import RelatedProduct from '@/Components/section/RelatedProduct.vue';
-import { ref } from 'vue';
+import { useNewBlog } from '@/Composable/CreateBlog/useNewBlog'
 import DropdownLink from '@/Components/DropdownLink.vue';
-
+import { onActivated, ref, toRefs, onMounted } from 'vue';
+import Modal from '@/Components/Modal.vue';
+import Swal from 'sweetalert2';
 export default {
-    name: 'ProductDetail',
-    components: {
-        HeaderMain,
-        RelatedProduct,
-        DropdownLink
-    },
-    setup() {
+    components: { HeaderMain, DropdownLink, Modal },
+    props: ["blog"],
+    setup(props) {
 
-        const SectionData = ref({
-            // Related Product data
-            relatedProductData: {
-                title: 'Popular Art Assets',
-            },
-            // itemDetail data
-            itemDetailData: {
-                title: 'The Future is Blossoming - Harlows 2021',
-                content: 'Limited Edition *digital-only* "CB Galaxy" style Coke Boys LA sneakers wearable in the Decentraland metaverse',
-                metaText: 'Not for sale',
-                metaTextTwo: '500 editions',
-                metaTextThree: 'Highest bid 0.072 ETH',
-                btnText: 'Place a Bid',
-                btnTextTwo: 'Share',
-                itemDetailTabNav: [
-                    {
-                        id: 1,
-                        isActive: 'active',
-                        title: 'Owners',
-                        slug: 'owners-tab',
-                        bsTarget: '#owners'
-                    },
-                    {
-                        id: 2,
-                        title: 'Bids',
-                        slug: 'bids-tab',
-                        bsTarget: '#bids'
-                    },
-                    {
-                        id: 3,
-                        title: 'History',
-                        slug: 'history-tab',
-                        bsTarget: '#history'
-                    },
-                ],
-                itemDetailOwnerList: [
-                    {
-                        id: 1,
-                        title: 'French Montana',
-                        subTitle: '450 editions not for sale',
+        const { blog } = toRefs(props)
 
-                        path: '/author'
-                    },
-                    {
-                        id: 2,
-                        title: 'Beejaey',
-                        subTitle: '6 editions not for sale',
+        const {
+            fileInput,
+            handleDrop,
+            urlImageFile,
+            openFileInput,
+            handleDragOver,
+            handleFileChange, EnableForEdit, idBlog,
+            tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
+            fechaReflejadaBlog, estadoBlog
+        } = useNewBlog()
 
-                        path: '/author'
-                    },
-                    {
-                        id: 3,
-                        title: 'Tom Dracula',
-                        subTitle: '24 editions not for sale',
+        const modalIsOpen = ref(false)
+        const arraySeccionInformativa = ref([])
+        onMounted(async () => {
 
-                        path: '/author'
-                    }
-                ],
-                itemDetailOwnerListTwo: {
-                    title: 'Owners',
-                    ownerList: [
-                        {
-                            id: 1,
-                            title: 'French Montana',
-                            subTitle: '450 editions not for sale',
+            console.log(blog.value.secciones_informativas);
 
-                            path: '/author'
-                        },
-                        {
-                            id: 2,
-                            title: 'Beejaey',
-                            subTitle: '6 editions not for sale',
+            blog.value.secciones_informativas.map((value, index) => {
+                arraySeccionInformativa.value.push(value);
+            })
 
-                            path: '/author'
-                        },
-                        {
-                            id: 3,
-                            title: 'Tom Dracula',
-                            subTitle: '24 editions not for sale',
-
-                            path: '/author'
-                        }
-                    ]
-                },
-                itemDetailBidsList: [
-                    {
-                        id: 1,
-                        title: '0.072 ETH by Palliman for 1 edition',
-                        date: '21/09/2021',
-
-                        path: '/author'
-                    },
-                    {
-                        id: 2,
-                        title: '0.072 ETH by KingKhalid for 1 edition',
-                        date: '14/08/2021',
-
-                        path: '/author'
-                    },
-                    {
-                        id: 3,
-                        title: '0.072 ETH by Kamran for 1 edition',
-                        date: '12/07/2021',
-
-                        path: '/author'
-                    }
-                ],
-                itemDetailBidsListTwo: {
-                    title: 'Bids',
-                    bidsList: [
-                        {
-                            id: 1,
-                            title: '0.072 ETH by Palliman for 1 edition',
-                            date: '21/09/2021',
-
-                            path: '/author'
-                        },
-                        {
-                            id: 2,
-                            title: '0.072 ETH by KingKhalid for 1 edition',
-                            date: '14/08/2021',
-
-                            path: '/author'
-                        },
-                        {
-                            id: 3,
-                            title: '0.072 ETH by Kamran for 1 edition',
-                            date: '12/07/2021',
-
-                            path: '/author'
-                        }
-                    ]
-                },
-                itemDetailHistoryList: [
-                    {
-                        id: 1,
-                        title: 'Listed 1 edition for 0.35 ETH',
-                        subTitle: 'by Medicom 21 hours ago',
-
-                        path: '/author'
-                    },
-                    {
-                        id: 2,
-                        title: 'Purchased 1 edition for 0.1 ETH',
-                        subTitle: 'by Medicom 21 hours ago',
-
-                        path: '/author'
-                    },
-                    {
-                        id: 3,
-                        title: 'Purchased 1 edition for 0.1 ETH',
-                        subTitle: 'by French Montana 23/09/2021',
-
-                        path: '/author'
-                    }
-                ],
-                itemDetailHistoryListTwo: {
-                    title: 'History',
-                    historyList: [
-                        {
-                            id: 1,
-                            title: 'Listed 1 edition for 0.35 ETH',
-                            subTitle: 'by Medicom 21 hours ago',
-
-                            path: '/author'
-                        },
-                        {
-                            id: 2,
-                            title: 'Purchased 1 edition for 0.1 ETH',
-                            subTitle: 'by Medicom 21 hours ago',
-
-                            path: '/author'
-                        },
-                        {
-                            id: 3,
-                            title: 'Purchased 1 edition for 0.1 ETH',
-                            subTitle: 'by French Montana 23/09/2021',
-
-                            path: '/author'
-                        }
-                    ]
-                },
-                itemDetailList: [
-                    {
-                        id: 1,
-                        title: '@nathan_walls',
-                        subTitle: 'Creator',
-
-                        path: '/author'
-                    },
-                    {
-                        id: 2,
-                        title: '@kamran_ahmed',
-                        subTitle: 'Collection',
-
-                        path: '/author'
-                    }
-                ],
-                itemDetailListTwo: [
-                    {
-                        title: 'Highest bid by Palliman',
-                        titleTwo: 'Palliman',
-                        subTitle: '0.072 ETH',
-
-                        path: '/author'
-                    }
-                ],
-
-            },
-            // placeBidModal data
-            placeBidModal: {
-                title: 'Place a Bid',
-                content: 'You are about to place a bid for <strong>The Future is Blossoming - Harlows 2021</strong> from <strong>Nathan walls</strong>',
-                labelText: 'Your bid (ETH)',
-                labelTextTwo: 'Enter quantity <span class="text-primary">5 available</span>',
-                totalBidList: [
-                    {
-                        title: 'Your bidding balance',
-                        price: '0.013325 ETH'
-                    },
-                    {
-                        title: 'Your balance',
-                        price: '10.67856 ETH'
-                    },
-                    {
-                        title: 'Service fee 3.5%',
-                        price: '0.00325 ETH'
-                    },
-                    {
-                        title: 'You will pay',
-                        price: '0.013325 ETH'
-                    },
-                ],
-                btnText: 'Place a Bid',
-                btnLink: 'wallet'
-            },
         })
 
+
+
+        const clickForPushToArraySecction = async () => {
+
+            const confirmed = await Swal.fire({
+                title: '¿Está seguro de crear un nuevo blog?',
+                icon: 'question',
+                iconHtml: '❓',
+                confirmButtonText: 'Si, Agregar el blog',
+                confirmButtonColor: '#141368',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true,
+                showCloseButton: true
+            });
+
+            if (confirmed.isConfirmed) {
+
+                arraySeccionInformativa.value.push({
+                    'id_seccion_informativa': '',
+                    'id_tipo_seccion': 1, // esto para mientras
+                    'id_blog': blog.value.id_blog,
+                    'nombre_seccion_informativa': '',
+                    'contenido_seccion_informativa': '',
+                    'imagen_tipo_informacion': '',
+                    'fecha_creacion_seccion_informativa': '',
+                    'fecha_actualizacion_informativa': '',
+                    'usuario_seccion_informativa': '',
+                })
+                modalIsOpen.value = false
+
+                addArraySeccionInformtiva()
+            }
+        }
+
+        const addArraySeccionInformtiva = async () => {
+
+
+            /*  const confirmed = await Swal.fire({
+                 title: '¿Está seguro de crear un nuevo blog?',
+                 icon: 'question',
+                 iconHtml: '❓',
+                 confirmButtonText: 'Si, Agregar el blog',
+                 confirmButtonColor: '#141368',
+                 cancelButtonText: 'Cancelar',
+                 showCancelButton: true,
+                 showCloseButton: true
+             });
+
+             if (confirmed.isConfirmed) { */
+            axios.post('/add-secction-informativa', { arraySeccionInformativa: arraySeccionInformativa.value })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+
+                    console.error(error);
+                });
+            // }
+
+
+        }
+
+        const updateSeccionInformativa = (idSeccionInfo, campoActualizar, valorEnviado) => {
+
+            console.log({ idSeccionInfo, campoActualizar, valorEnviado });
+            axios.post('/update-secction-informativa', {
+                id_seccion_informativa: idSeccionInfo,
+                campoActualizar: campoActualizar,
+                valorEnviado: valorEnviado,
+
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+
+                    console.error(error);
+                });
+        }
+
         return {
-            SectionData
+            modalIsOpen, arraySeccionInformativa, clickForPushToArraySecction,
+
+            fileInput,
+            handleDrop,
+            EnableForEdit,
+            urlImageFile,
+            openFileInput, updateSeccionInformativa,
+            handleDragOver,
+            handleFileChange, idBlog,
+            tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
+            fechaReflejadaBlog, estadoBlog
+
         }
     }
 }
 </script>
+
+<style></style>

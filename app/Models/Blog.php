@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Blog extends Model
 {
@@ -25,4 +26,14 @@ class Blog extends Model
         'fecha_actualizacion_blog',
         'usuario_blog',
     ];
+
+    /**
+     * Get all of the secciones_informativas for the Blog
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function secciones_informativas(): HasMany
+    {
+        return $this->hasMany(SeccionInformativa ::class, 'id_blog', 'id_blog');
+    }
 }

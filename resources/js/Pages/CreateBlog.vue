@@ -63,7 +63,8 @@
                                 <h5 class="mb-1">Selecciona categoria</h5>
                                 <p class="form-text mb-3">This is the collection where your item will appear.</p>
                                 <select class="form-select" aria-label="Default select example" v-model="idCategory">
-                                    <option value="1" v-for="(cat,i) in optionsCategories" :key="i">{{ cat.nombre_categoria }}</option>
+                                    <option value="1" v-for="(cat, i) in optionsCategories" :key="i">{{
+                                cat.nombre_categoria }}</option>
 
                                 </select>
                             </div>
@@ -177,6 +178,9 @@ export default {
                 })
                     .then((response) => {
                         console.log(response);
+
+                        window.location.href = `/post-detail/${response.data}`;
+
                     })
                     .catch((error) => {
 
@@ -186,17 +190,17 @@ export default {
         }
 
         const getCategoriesBlog = async () => {
-    try {
-        const response = await axios.get('getCategoriesBlog');
-        console.log(response);
-        optionsCategories.value = response.data
-    } catch (error) {
-        console.error(`Error fetching categories: ${error}`);
-        return null;
-    }
-};
+            try {
+                const response = await axios.get('getCategoriesBlog');
+                console.log(response);
+                optionsCategories.value = response.data
+            } catch (error) {
+                console.error(`Error fetching categories: ${error}`);
+                return null;
+            }
+        };
 
-        onMounted( () => {
+        onMounted(() => {
             getCategoriesBlog()
         })
 

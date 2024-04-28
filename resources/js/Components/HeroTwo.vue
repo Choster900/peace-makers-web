@@ -25,14 +25,15 @@
                                 <button class="btn btn-lg btn-dark" >
                                     Explore
                                 </button>
-
+                                {}
                             </li> -->
                             <li v-for="(btn, i) in SectionData.btnDataThree" :key="i">
-                                <button class="btn" :class="btn.btnClass">
+                                <DropdownLink href="new-blog" class="btn"  :class="btn.btnClass">
                                     {{ btn.title }}
-                                    <span class="d-none d-xl-inline-block" v-if="istext">{{ btn.titleTwo }}</span>
-                                </button>
+                                    <span class="d-none d-xl-inline-block " v-if="istext">{{ btn.titleTwo }}</span>
+                                </DropdownLink>
                             </li>
+                            {{ SectionData.btnDataThree }}
                         </ul>
                     </div><!-- hero-content -->
                 </div><!-- col-lg-6 -->
@@ -44,9 +45,10 @@
 <script>
 import { ref } from 'vue'
 import ButtonGroup from './common/ButtonGroup.vue'
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 export default {
-    components: { ButtonGroup },
+    components: { ButtonGroup,DropdownLink },
     name: 'HeroTwo',
     setup() {
         const SectionData = ref({

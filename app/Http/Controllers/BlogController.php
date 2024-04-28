@@ -23,11 +23,11 @@ class BlogController extends Controller
         // Almacenar el archivo en el directorio 'imagenes' dentro del disco 'public'
         $file->storeAs('blogsImages', $name, 'public');
         // Generar la URL completa para el archivo almacenado
-        $imagePath = 'storage/blogsImages/' . $name; // Asegúrate de que la ruta sea correcta según la configuración de tu sistema de archivos
+        $imagePath = '/storage/blogsImages/' . $name; // Asegúrate de que la ruta sea correcta según la configuración de tu sistema de archivos
 
 
 
-        return Blog::insert([
+        $blogId = Blog::insertGetId([
             'titulo_blog'                => $request->tituloBlog,
             'id_categoria_blog'               => $request->idCategory,
             'descripcion_blog'           => $request->descriptionBlog,
@@ -40,7 +40,13 @@ class BlogController extends Controller
             'usuario_blog'               => 1, // TODO : Por default se dejara 1 (en el futuro poner el id del usuario que agrega)
 
         ]);
+
+        return  $blogId;
+
+
     }
+
+
 
     function getCategoriesBlog()
     {

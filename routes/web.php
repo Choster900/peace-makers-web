@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SeccionInformativaController;
+use App\Models\Blog;
+use App\Models\SeccionInformativa;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,10 +36,22 @@ Route::get('/explore', function () {
     return Inertia::render('Explore');
 });
 
-Route::get('/post-detail', function () {
-    //return Inertia::render('ProductDetail');
-    return Inertia::render('ProductDetail');
+Route::get('/post-detail/{id}', function ($id) {
+    $blog = Blog::with(["secciones_informativas"])->find($id); // Buscar el blog por su ID
+
+    // Verificar si se encontró el blog
+    if ($blog) {
+        // Si se encontró el blog, renderizar la vista ProductDetail con el blog encontrado
+        return Inertia::render('ProductDetail', ['blog' => $blog]);
+    } else {
+        // Si no se encontró el blog, puedes manejar esto como desees
+        abort(404); // Por ejemplo, mostrar una página 404
+    }
 });
+Route::post('add-secction-informativa', [SeccionInformativaController::class, 'inserSeccionInformativa'])->name('addNewBlog');
+Route::post('update-secction-informativa', [SeccionInformativaController::class, 'updateSeccionInformativa'])->name('addNewBlog');
+
+
 
 Route::get('/about-us', function () {
     //return Inertia::render('AboutUs');
@@ -92,13 +107,19 @@ Route::get('/new-blog', function () {
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
 Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('addNewBlog');
 
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    
+
 });
 
