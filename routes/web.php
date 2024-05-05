@@ -99,7 +99,7 @@ Route::get('/createMultiple', function () {
 });
 
 Route::get('/new-blog', function () {
-    //return Inertia::render('CreateMultiple');
+    //return Inertia::render('CreateBlog');
     return Inertia::render('CreateBlog');
 });
 
@@ -109,7 +109,7 @@ Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->n
 
 
 
-Route::middleware([
+Route::middleware([ 
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
@@ -119,7 +119,13 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    
+    Route::get('/createMultiple', function () {
+        return Inertia::render('CreateMultiple');
+    });
+
+    Route::get('/new-blog', function () {
+        return Inertia::render('CreateBlog');
+    });
 
 });
 

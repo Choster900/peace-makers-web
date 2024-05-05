@@ -36,8 +36,8 @@
         <div class="copyright-wrap d-flex flex-wrap py-3 align-items-center justify-content-between">
             <p class="footer-copy-text py-2" v-html="SectionData.copyTitle"></p>
             <ul class="list-item list-item-s1 list-item-inline">
-                <li v-for="(list, i) in SectionData.footerData.footerListTwo" :key="i"><router-link :to="list.path">{{
-                    list.title }}</router-link></li>
+                <li v-for="(list, i) in SectionData.footerData.footerListTwo" :key="i"><router-link :to="list.path">{{ list.title }}
+                </router-link></li>
             </ul>
         </div><!-- end d-flex -->
     </div><!-- .container -->
@@ -137,16 +137,16 @@ export default {
                         path: '/explore'
                     },
                     {
-                        title: 'Activity',
-                        path: 'activity'
+                        title: 'CreateMultiple',
+                        path: '/createMultiple'
+                    },
+                    {
+                        title: 'New Blog',
+                        path: '/new-blog'
                     },
                     {
                         title: 'Login',
-                        path: 'login'
-                    },
-                    {
-                        title: 'Wallet',
-                        path: 'wallet'
+                        path: '/login'
                     }
                 ]
             },
