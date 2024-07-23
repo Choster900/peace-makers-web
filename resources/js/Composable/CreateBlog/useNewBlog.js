@@ -16,12 +16,15 @@ export const useNewBlog = () => {
     const fechaReflejadaBlog = ref(null);
     const estadoBlog = ref(null);
 
+    const archivoFull = ref(null);
+
     //Fin de constantes
-
+    // Funciones
     const openFileInput = () => {
-        fileInput.value.click();
+        if (fileInput.value) {
+            fileInput.value.click();
+        }
     };
-
     const handleFileChange = () => {
         const selectedFile = fileInput.value.files[0];
         console.log(selectedFile);
@@ -45,6 +48,8 @@ export const useNewBlog = () => {
     };
 
     const setImageData = (selectedFile) => {
+
+        archivoFull.value = selectedFile
         console.log(selectedFile);
         urlImageFile.value = URL.createObjectURL(selectedFile);
         console.log('Archivo seleccionado:', selectedFile.name);
@@ -53,15 +58,16 @@ export const useNewBlog = () => {
     return {
         fileInput,
         handleDrop,
+        archivoFull,
         urlImageFile,
         openFileInput,
         handleDragOver,
-        handleFileChange,EnableForEdit,
+        handleFileChange, EnableForEdit,
 
 
         idBlog,
-        tituloBlog,descripcionBlog,fotoPrincipalBlog,contenidoDescripcionBlog,numeroVisitasBlog,
-        fechaReflejadaBlog,estadoBlog
+        tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
+        fechaReflejadaBlog, estadoBlog
 
     };
 }

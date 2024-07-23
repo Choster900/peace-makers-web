@@ -119,6 +119,7 @@ Route::get('/new-blog', function () {
 
 // ! Working on it by sergio
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
+Route::post('updateBlog', [BlogController::class, 'updateBlog'])->name('updateBlog');
 Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('addNewBlog');
 
 

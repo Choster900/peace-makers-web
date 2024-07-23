@@ -17,8 +17,20 @@
                                 <!-- <div class="cursor-pointer absolute inset-0 h-full"></div> -->
                             </div>
 
-                            <!-- <input type="file" ref="fileInput" accept="image/gif,image/jpeg,image/png,image/jpg,image"
-                                style="display: none;" @change="handleFileChange"> -->
+                            <input type="file" ref="fileInput" accept="image/gif,image/jpeg,image/png,image/jpg,image"
+                                style="display: none;" @change="handleFileChange">
+
+
+                            <ul class="btns-group pb-3">
+                                <li>
+                                    <button class="btn btn-lg btn-dark" @click="updateCurrentBlog()">
+                                        GUARDAR TODO
+                                        <span class="d-none d-xl-inline-block">(Reemplazara imagen y cambios hechos en
+                                            la publicacion)</span>
+                                    </button>
+                                </li>
+                            </ul>
+
                             <div class="item-detail-tab">
 
                                 <ul class="nav nav-tabs nav-tabs-s1">
@@ -45,7 +57,6 @@
                                 <h1 v-if="!EnableForEdit" class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
 
                                 <input type="text" id="text" v-else v-model="blog.titulo_blog"
-                                    @input="updateBlop('titulo_blog', $event.target.value)"
                                     class="mb-2 shadow-sm rounded-md w-full text-black font-medium  border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                     placeholder="Nombre de la Publicacion" required>
 
@@ -56,19 +67,34 @@
                             </div>
 
 
-                            <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
+                            <!-- <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
                                 <span class="item-detail-text-meta">lorem</span>
                                 <span class="dot-separeted"></span>
                                 <span class="item-detail-text-meta">ipsum</span>
                                 <span class="dot-separeted"></span>
                                 <span class="item-detail-text-meta">dolor</span>
+                            </div> -->
+                            {{ fileInput }}
+                            {{archivoFull}}
+
+                            <div class="form-item mb-4">
+                                <h5 class="mb-1 text-sm font-semibold">Selecciona categoría</h5>
+                                <p class="form-text mb-2 text-xs text-gray-500">Esta es la colección donde aparecerá tu
+                                    artículo.</p>
+                                <select class="form-select h-10 p-1 px-2 border rounded-md text-sm leading-6"
+                                    aria-label="Default select example" v-model="blog.id_categoria_blog">
+                                    <option v-for="(cat, i) in optionsCategories" :key="i" :value="cat.id_categoria">{{
+                                cat.nombre_categoria }}</option>
+                                </select>
                             </div>
 
-
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                             <p class="item-detail-text mb-4" v-if="!EnableForEdit">{{ blog.descripcion_blog }}</p>
 
                             <textarea placeholder='Message' rows="6" name='message' v-else
-                                @input="updateBlop('descripcion_blog', $event.target.value)"
                                 v-model="blog.descripcion_blog"
                                 class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
 
@@ -123,14 +149,16 @@
                                                     placeholder="Nombre de la Publicacion" required>
 
 
-                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">{{item.contenido_seccion_informativa}}</p>
+                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">
+                                                    {{ item.contenido_seccion_informativa }}</p>
 
 
                                                 <textarea placeholder='Message' rows="6" name='message'
                                                     v-model="item.contenido_seccion_informativa"
                                                     @input="updateSeccionInformativa(item.id_seccion_informativa, 'contenido_seccion_informativa', $event.target.value)"
                                                     class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
-                                                <span class="mt-1 block text-sm font-semibold text-blue-500">{{ moment().format("LL") }}</span>
+                                                <span class="mt-1 block text-sm font-semibold text-blue-500">{{
+                                moment().format("LL") }}</span>
                                             </div>
                                         </div>
 
@@ -200,9 +228,9 @@
 
     </div>
     <pre>
-<!--     {{ blog }}
+    {{ blog }}
 
-    {{ arraySeccionInformativa }} -->
+    {{ arraySeccionInformativa }}
     </pre>
 </template>
 
@@ -229,7 +257,7 @@ export default {
             handleDragOver,
             handleFileChange, EnableForEdit, idBlog,
             tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
-            fechaReflejadaBlog, estadoBlog
+            fechaReflejadaBlog, estadoBlog, archivoFull
         } = useNewBlog()
 
         const modalIsOpen = ref(false)
@@ -243,9 +271,48 @@ export default {
                 arraySeccionInformativa.value.push(value);
             })
 
+            getCategoriesBlog()
+
+
+            console.log(blog.value);
+
+
         })
 
 
+        const updateCurrentBlog = async () => {
+            const confirmed = await Swal.fire({
+                title: '¿Está seguro de actualizar un nuevo blog?',
+                icon: 'question',
+                iconHtml: '❓',
+                confirmButtonText: 'Si, Agregar el blog',
+                confirmButtonColor: '#141368',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true,
+                showCloseButton: true
+            });
+
+
+            if (confirmed.isConfirmed) {
+
+
+
+                axios.post('/updateBlog', { blog: blog.value, fileInput: archivoFull.value }, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+
+                        console.error(error);
+                    });
+
+            }
+
+        }
 
         const clickForPushToArraySecction = async () => {
 
@@ -348,13 +415,30 @@ export default {
                 });
         }
 
+
+        const optionsCategories = ref(null)
+        const getCategoriesBlog = async () => {
+            try {
+                const response = await axios.get('/getCategoriesBlog');
+                console.log(response);
+                optionsCategories.value = response.data
+            } catch (error) {
+                console.error(`Error fetching categories: ${error}`);
+                return null;
+            }
+        };
+
+
         return {
             modalIsOpen, arraySeccionInformativa, clickForPushToArraySecction,
             updateBlop,
+            optionsCategories,
             fileInput,
             handleDrop,
+            updateCurrentBlog,
             EnableForEdit,
             moment,
+            archivoFull,
             urlImageFile,
             openFileInput, updateSeccionInformativa,
             handleDragOver,
