@@ -1,5 +1,5 @@
 <template>
-    <DropdownLink class="logo-link" :class="classname" href="/">
+    <DropdownLink class="logo-link mt-2" :class="classname" href="/">
         <img class="logo-dark logo-img " src="../../images/wordmarkDark.png" alt="logo">
         <img class="logo-light logo-img" src="../../images/whitelogo.png" alt="logo-white">
     </DropdownLink>
