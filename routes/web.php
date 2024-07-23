@@ -31,6 +31,19 @@ Route::get('/', function () {
     //return Inertia::render('Dashboard');
     return Inertia::render('Home');
 });
+
+Route::get('/get-ramdon-blogs-for-home', function () {
+    $blogs = Blog::inRandomOrder()->limit(4)->get();
+
+    // Ahora tienes una colección de 4 blogs aleatorios
+    foreach ($blogs as $blog) {
+        // Aquí puedes acceder a cada blog y realizar las operaciones necesarias
+        $blog->load("secciones_informativas");
+    }
+
+    return $blogs; // Por ejemplo, devolver los blogs aleatorios como respuesta JSON
+});
+
 Route::get('/explore', function () {
     //return Inertia::render('Dashboard');
     return Inertia::render('Explore');
@@ -49,7 +62,8 @@ Route::get('/post-detail/{id}', function ($id) {
     }
 });
 Route::post('add-secction-informativa', [SeccionInformativaController::class, 'inserSeccionInformativa'])->name('addNewBlog');
-Route::post('update-secction-informativa', [SeccionInformativaController::class, 'updateSeccionInformativa'])->name('addNewBlog');
+Route::post('update-secction-informativa', [SeccionInformativaController::class, 'updateSeccionInformativa'])->name('updateSecctionInformativa');
+Route::post('update-blog', [SeccionInformativaController::class, 'updateBlog'])->name('updateBlog');
 
 
 
@@ -109,7 +123,7 @@ Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->n
 
 
 
-Route::middleware([ 
+Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',

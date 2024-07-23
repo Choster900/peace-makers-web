@@ -6,13 +6,16 @@
                 :content="SectionData.featuredData.content" isMargin="mb-3" /> -->
 
             <div class="row g-gs">
-                <div class="col-sm-6 col-md-6 col-lg-3" v-for="item in SectionData.featuredData.featuredList"
-                    :key="item.id">
-                    <DropdownLink :to="item.path" class="card card-full">
-                        <img src="../../../images/thumb/art.jpg" class="card-img-top" alt="featured miage">
+                <div class="col-sm-6 col-md-6 col-lg-3" v-for="item in arrayRamdonBlogs"
+                    :key="item.id_blog">
+                    <DropdownLink :href="'post-detail/'+item.id_blog" class="card card-full">
+                        <img :src="item.foto_principal_blog" class="card-img-top" alt="featured miage">
                         <div class="card-body p-4">
-                            <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="small">{{ item.content }}</p>
+                            <h5 class="card-title">{{ item.titulo_blog }}</h5>
+                            <p class="small"><!-- {{ item.descripcion_blog }} -->
+
+                                {{ $options.filters.truncate(item.descripcion_blog, 50,'...') }}
+                            </p>
                         </div><!-- end card-body -->
                     </DropdownLink><!-- end card -->
                 </div><!-- end col -->
@@ -22,13 +25,35 @@
 </template>
 <script>
 // Import component data. You can change the data in the store to reflect in all component
-import { ref } from 'vue'
+import { ref, onActivated, onMounted } from 'vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import { truncateString } from '@/mixins/truncateString'
 /* import SectionHeading from '@/Components/Common/SectionHeading.vue';
  */export default {
+    mixins: [truncateString],
     components: { DropdownLink, /* SectionHeading */ },
     name: 'Featured',
     setup() {
+        const arrayRamdonBlogs = ref([])
+
+        const getRamdonBlog = () => {
+            axios.get('/get-ramdon-blogs-for-home', )
+                .then((response) => {
+
+                    console.log(response.data);
+
+                    arrayRamdonBlogs.value = response.data
+                })
+                .catch((error) => {
+
+                    console.error(error);
+                });
+        }
+
+        onMounted( async () => {
+            getRamdonBlog()
+        })
+
         const SectionData = ref({
             // Freatured data
             featuredData: {
@@ -64,6 +89,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
         })
 
         return {
+            arrayRamdonBlogs,
             SectionData,
         }
     }

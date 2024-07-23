@@ -15,25 +15,12 @@
                         <!-- button group -->
                         <!-- <button-group :btns="SectionData.btnDataThree" classname="hero-btns"></button-group> -->
                         <ul class="btns-group hero-btns">
-                            <!-- <li >
-                                <button class="btn-lg bg-[#FF9F12] text-white border-black" >
-                                    Create
-                                </button>
-
-                            </li>
-                            <li >
-                                <button class="btn btn-lg btn-dark" >
-                                    Explore
-                                </button>
-                                {}
-                            </li> -->
                             <li v-for="(btn, i) in SectionData.btnDataThree" :key="i">
-                                <DropdownLink href="new-blog" class="btn"  :class="btn.btnClass">
+                                <DropdownLink :href="btn.path" class="btn"  :class="btn.btnClass">
                                     {{ btn.title }}
                                     <span class="d-none d-xl-inline-block " v-if="istext">{{ btn.titleTwo }}</span>
                                 </DropdownLink>
                             </li>
-                            {{ SectionData.btnDataThree }}
                         </ul>
                     </div><!-- hero-content -->
                 </div><!-- col-lg-6 -->
@@ -61,7 +48,7 @@ export default {
                 {
                     btnClass: 'btn-lg btn-outline-dark',
                     title: 'Create',
-                    path: '/create'
+                    path: '/new-blog'
                 }
             ],
             heroDataTwo: {

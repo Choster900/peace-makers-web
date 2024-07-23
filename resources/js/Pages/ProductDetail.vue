@@ -23,11 +23,14 @@
 
                                 <ul class="nav nav-tabs nav-tabs-s1">
                                     <li class="nav-item">
-                                        <button class="nav-link" type="button">Button Option 1
+                                        <button class="nav-link" type="button ">
+                                            <span class="underline">
+                                                INFORMATIVA
+                                            </span>
                                         </button>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="nav-link" type="button">Button Option 2
+                                        <button class="nav-link" type="button">GALERIA
                                         </button>
                                     </li>
                                 </ul>
@@ -42,6 +45,7 @@
                                 <h1 v-if="!EnableForEdit" class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
 
                                 <input type="text" id="text" v-else v-model="blog.titulo_blog"
+                                    @input="updateBlop('titulo_blog', $event.target.value)"
                                     class="mb-2 shadow-sm rounded-md w-full text-black font-medium  border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                     placeholder="Nombre de la Publicacion" required>
 
@@ -64,6 +68,7 @@
                             <p class="item-detail-text mb-4" v-if="!EnableForEdit">{{ blog.descripcion_blog }}</p>
 
                             <textarea placeholder='Message' rows="6" name='message' v-else
+                                @input="updateBlop('descripcion_blog', $event.target.value)"
                                 v-model="blog.descripcion_blog"
                                 class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
 
@@ -86,11 +91,11 @@
 
                                 </div>
                             </div>
-                            <button
+                            <!--  <button
                                 class="middle none center w-full rounded-md bg-[#0E3C55] py-2 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 data-ripple-light="true">
                                 Terminar y guardar
-                            </button>
+                            </button> -->
                         </div>
                     </div>
 
@@ -109,7 +114,8 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <div class="ml-6">
-                                                <h4 class="font-bold text-blue-500">{{ item.nombre_seccion_informativa }}</h4>
+                                                <h4 class="font-bold text-blue-500">{{ item.nombre_seccion_informativa
+                                                    }}</h4>
 
                                                 <input type="text" id="text" v-model="item.nombre_seccion_informativa"
                                                     @input="updateSeccionInformativa(item.id_seccion_informativa, 'nombre_seccion_informativa', $event.target.value)"
@@ -117,11 +123,14 @@
                                                     placeholder="Nombre de la Publicacion" required>
 
 
-                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">Lorem ipsum dolor
-                                                    sit amet, consectetur adipisicing elit. Aspernatur, soluta dolorum
-                                                    fuga blanditiis, eos quia cum non atque expedita at corrupti dicta
-                                                    deserunt? Amet vitae quia nam veniam distinctio maiores.</p>
-                                                <span class="mt-1 block text-sm font-semibold text-blue-500">2007</span>
+                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">{{item.contenido_seccion_informativa}}</p>
+
+
+                                                <textarea placeholder='Message' rows="6" name='message'
+                                                    v-model="item.contenido_seccion_informativa"
+                                                    @input="updateSeccionInformativa(item.id_seccion_informativa, 'contenido_seccion_informativa', $event.target.value)"
+                                                    class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
+                                                <span class="mt-1 block text-sm font-semibold text-blue-500">{{ moment().format("LL") }}</span>
                                             </div>
                                         </div>
 
@@ -191,9 +200,9 @@
 
     </div>
     <pre>
-    {{ blog }}
+<!--     {{ blog }}
 
-    {{ arraySeccionInformativa }}
+    {{ arraySeccionInformativa }} -->
     </pre>
 </template>
 
@@ -204,6 +213,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import { onActivated, ref, toRefs, onMounted } from 'vue';
 import Modal from '@/Components/Modal.vue';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 export default {
     components: { HeaderMain, DropdownLink, Modal },
     props: ["blog"],
@@ -224,9 +234,10 @@ export default {
 
         const modalIsOpen = ref(false)
         const arraySeccionInformativa = ref([])
+
         onMounted(async () => {
 
-            console.log(blog.value.secciones_informativas);
+            //console.log(blog.value.secciones_informativas);
 
             blog.value.secciones_informativas.map((value, index) => {
                 arraySeccionInformativa.value.push(value);
@@ -283,9 +294,15 @@ export default {
              });
 
              if (confirmed.isConfirmed) { */
-            axios.post('/add-secction-informativa', { arraySeccionInformativa: arraySeccionInformativa.value })
+            axios.post('/add-secction-informativa', { arraySeccionInformativa: arraySeccionInformativa.value, idBlog: blog.value.id_blog })
                 .then((response) => {
-                    console.log(response);
+                    arraySeccionInformativa.value = []
+                    console.log(response.data);
+
+                    response.data.map((value, index) => {
+                        arraySeccionInformativa.value.push(value);
+                    })
+
                 })
                 .catch((error) => {
 
@@ -314,12 +331,30 @@ export default {
                 });
         }
 
+        const updateBlop = (campoActualizar, valorEnviado) => {
+
+            axios.post('/update-blog', {
+                id_blog: blog.value.id_blog,
+                campoActualizar: campoActualizar,
+                valorEnviado: valorEnviado,
+
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+
+                    console.error(error);
+                });
+        }
+
         return {
             modalIsOpen, arraySeccionInformativa, clickForPushToArraySecction,
-
+            updateBlop,
             fileInput,
             handleDrop,
             EnableForEdit,
+            moment,
             urlImageFile,
             openFileInput, updateSeccionInformativa,
             handleDragOver,

@@ -36,8 +36,8 @@
         <div class="copyright-wrap d-flex flex-wrap py-3 align-items-center justify-content-between">
             <p class="footer-copy-text py-2" v-html="SectionData.copyTitle"></p>
             <ul class="list-item list-item-s1 list-item-inline">
-                <li v-for="(list, i) in SectionData.footerData.footerListTwo" :key="i"><router-link :to="list.path">{{ list.title }}
-                </router-link></li>
+                <li v-for="(list, i) in SectionData.footerData.footerListTwo" :key="i">
+                <DropdownLink :href="list.path">{{ list.title }}</DropdownLink></li>
             </ul>
         </div><!-- end d-flex -->
     </div><!-- .container -->
@@ -46,6 +46,7 @@
 import { ref } from 'vue';
 // Import component data. You can change the data in the store to reflect in all component
 import LogoLink from './LogoLink.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 export default {
     name: 'FooterSection',
@@ -157,6 +158,6 @@ export default {
             SectionData
         };
     },
-    components: { LogoLink }
+    components: { LogoLink,DropdownLink }
 }
 </script>
