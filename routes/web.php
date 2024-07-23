@@ -19,6 +19,55 @@ use Inertia\Inertia;
 |
 */
 
+// Página principal y otras vistas estáticas
+Route::get('/', function () {
+    return Inertia::render('Home');
+});
+
+Route::get('/about-us', function () {
+    return Inertia::render('AboutUs');
+});
+
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+});
+
+Route::get('/purchasesSales', function () {
+    return Inertia::render('PurchasesSales');
+});
+
+Route::get('/transactions', function () {
+    return Inertia::render('Transactions');
+});
+
+Route::get('/account', function () {
+    return Inertia::render('Account');
+});
+
+Route::get('/paymentMethods', function () {
+    return Inertia::render('PaymentMethods');
+});
+
+Route::get('/notifications', function () {
+    return Inertia::render('Notifications');
+});
+
+Route::get('/explore', function () {
+    return Inertia::render('Explore');
+});
+
+Route::get('/create', function () {
+    return Inertia::render('Create');
+});
+
+Route::get('/createMultiple', function () {
+    return Inertia::render('CreateMultiple');
+});
+
+Route::get('/new-blog', function () {
+    return Inertia::render('CreateBlog');
+});
+
 Route::get('/test', function () {
     return Inertia::render('Welcome', [
         'canLogin'       => Route::has('login'),
@@ -27,109 +76,39 @@ Route::get('/test', function () {
         'phpVersion'     => PHP_VERSION,
     ]);
 });
-Route::get('/', function () {
-    //return Inertia::render('Dashboard');
-    return Inertia::render('Home');
-});
 
+// Rutas relacionadas con los blogs
 Route::get('/get-ramdon-blogs-for-home', function () {
     $blogs = Blog::inRandomOrder()->limit(4)->get();
-
-    // Ahora tienes una colección de 4 blogs aleatorios
     foreach ($blogs as $blog) {
-        // Aquí puedes acceder a cada blog y realizar las operaciones necesarias
         $blog->load("secciones_informativas");
     }
-
-    return $blogs; // Por ejemplo, devolver los blogs aleatorios como respuesta JSON
-});
-
-Route::get('/explore', function () {
-    //return Inertia::render('Dashboard');
-    return Inertia::render('Explore');
+    return $blogs;
 });
 
 Route::get('/post-detail/{id}', function ($id) {
-    $blog = Blog::with(["secciones_informativas"])->find($id); // Buscar el blog por su ID
-
-    // Verificar si se encontró el blog
+    $blog = Blog::with(["secciones_informativas"])->find($id);
     if ($blog) {
-        // Si se encontró el blog, renderizar la vista ProductDetail con el blog encontrado
         return Inertia::render('ProductDetail', ['blog' => $blog]);
     } else {
-        // Si no se encontró el blog, puedes manejar esto como desees
-        abort(404); // Por ejemplo, mostrar una página 404
+        abort(404);
     }
 });
-Route::post('add-secction-informativa', [SeccionInformativaController::class, 'inserSeccionInformativa'])->name('addNewBlog');
-Route::post('update-secction-informativa', [SeccionInformativaController::class, 'updateSeccionInformativa'])->name('updateSecctionInformativa');
-Route::post('update-blog', [SeccionInformativaController::class, 'updateBlog'])->name('updateBlog');
 
-
-
-Route::get('/about-us', function () {
-    //return Inertia::render('AboutUs');
-    return Inertia::render('AboutUs');
-});
-
-Route::get('/contact', function () {
-    //return Inertia::render('Contact');
-    return Inertia::render('Contact');
-});
-
-Route::get('/purchasesSales', function () {
-    //return Inertia::render('PurchasesSales');
-    return Inertia::render('PurchasesSales');
-});
-
-Route::get('/transactions', function () {
-    //return Inertia::render('Transactions');
-    return Inertia::render('Transactions');
-});
-
-Route::get('/account', function () {
-    //return Inertia::render('Account');
-    return Inertia::render('Account');
-});
-
-Route::get('/paymentMethods', function () {
-    //return Inertia::render('PaymentMethods');
-    return Inertia::render('PaymentMethods');
-});
-
-Route::get('/notifications', function () {
-    //return Inertia::render('Notifications');
-    return Inertia::render('Notifications');
-});
-
-Route::get('/create', function () {
-    //return Inertia::render('Create');
-    return Inertia::render('Create');
-});
-
-Route::get('/createMultiple', function () {
-    //return Inertia::render('CreateMultiple');
-    return Inertia::render('CreateMultiple');
-});
-
-Route::get('/new-blog', function () {
-    //return Inertia::render('CreateBlog');
-    return Inertia::render('CreateBlog');
-});
-
-// ! Working on it by sergio
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
 Route::post('updateBlog', [BlogController::class, 'updateBlog'])->name('updateBlog');
-Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('addNewBlog');
+Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('getCategoriesBlog');
 
+// Rutas relacionadas con secciones informativas
+Route::post('add-secction-informativa', [SeccionInformativaController::class, 'inserSeccionInformativa'])->name('addSecctionInformativa');
+Route::post('update-secction-informativa', [SeccionInformativaController::class, 'updateSeccionInformativa'])->name('updateSecctionInformativa');
 
-
+// Rutas protegidas por middleware
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
@@ -141,6 +120,4 @@ Route::middleware([
     Route::get('/new-blog', function () {
         return Inertia::render('CreateBlog');
     });
-
 });
-
