@@ -34,9 +34,9 @@
                 </ul>
             </div>-->
         </li>
-        <li class="menu-item has-sub">
+         <!--<li class="menu-item has-sub">
             <DropdownLink href="/contact" class="menu-whitout-link">{{ SectionData.headerData.menuList4.title }}</DropdownLink>
-            <!--<div class="menu-sub menu-mega">
+           <div class="menu-sub menu-mega">
                 <div class="menu-mega-row">
                     <ul class="menu-list menu-list-mega">
                         <li class="menu-item" v-for="nav in SectionData.headerData.menuList4.navList" :key="nav.id">
@@ -50,8 +50,9 @@
                         </li>
                     </ul>
                 </div>
-            </div>-->
-        </li>
+            </div
+        </li> >-->
+
     </ul>
 </template>
 
