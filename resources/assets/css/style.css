@@ -515,7 +515,7 @@ hr {
 .theme-toggler {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 .theme-toggler-float {
     position: fixed;
@@ -3400,6 +3400,11 @@ textarea.form-control {
 .dark-mode .footer-list li a {
     color: #c1c1c1;
 }
+
+.dark-mode .button-personalizado {
+    color: #c1c1c1;
+}
+
 .dark-mode .btn-light,
 .dark-mode .form-control,
 .dark-mode .form-select {
@@ -3556,4 +3561,3 @@ textarea.form-control {
     }
 }
 
-/*# sourceMappingURL=style.css.map */

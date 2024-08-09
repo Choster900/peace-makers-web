@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SeccionInformativaController;
 use App\Models\Blog;
@@ -120,4 +121,7 @@ Route::middleware([
     Route::get('/new-blog', function () {
         return Inertia::render('CreateBlog');
     });
+
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
 });

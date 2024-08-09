@@ -3,17 +3,28 @@
         <!-- menu list -->
         <MenuList></MenuList>
         <ul class="menu-btns menu-btns-2">
-            <li class="d-none d-lg-inline-block"><router-link to="wallet" class="icon-btn icon-btn-s1" title="Wallet">
+            <li class="d-none d-lg-inline-block">
+                <router-link to="wallet" class="icon-btn icon-btn-s1" title="Wallet">
                     <em class="ni ni-wallet"></em></router-link>
             </li>
             <li class="d-none d-lg-inline-block dropdown" ref="dropdownContainer">
                 <button type="button" class="icon-btn icon-btn-s1" @click="toggleDropdown">
                     <em class="ni ni-user"></em>
                 </button>
-                <ul :class="['dropdown-menu', 'card-generic', 'card-generic-s3', 'dropdown-menu-end', 'mt-2', { 'show': isDropdownVisible }]"
-                    class="dropdown-menu card-generic card-generic-s3 dropdown-menu-end mt-2"
-                    data-popper-placement="bottom-end"
-                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(-5.55556px, 46.6667px);">
+                <ul :class="[
+                    'dropdown-menu',
+                    'card-generic',
+                    'card-generic-s3',
+                    'dropdown-menu-end',
+                    'mt-2',
+                    { show: isDropdownVisible },
+                ]" class="dropdown-menu card-generic card-generic-s3 dropdown-menu-end mt-2"
+                    data-popper-placement="bottom-end" style="
+                        position: absolute;
+                        inset: 0px 0px auto auto;
+                        margin: 0px;
+                        transform: translate(-5.55556px, 46.6667px);
+                    ">
                     <li>
                         <h6 class="dropdown-header">Hello kamran!</h6>
                     </li>
@@ -23,16 +34,20 @@
                         </router-link>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-item card-generic-item theme-toggler"
+                        <a href="#" class="text-left dropdown-item card-generic-item theme-toggler"
                             title="Toggle Dark/Light mode">
                             <em class="ni ni-moon me-2"></em> Dark Mode
+
+                            <!-- <pre>
+                                {{ $page.props.auth.user?.id }}
+                            </pre> -->
                         </a>
                     </li>
                     <li>
-                        <hr class="dropdown-divider">
+                        <hr class="dropdown-divider" />
                     </li>
                     <li>
-                        <DropdownLink class="dropdown-item card-generic-item">
+                        <DropdownLink :href="route('logout')" method="post" class="dropdown-item card-generic-item ">
                             <em class="ni ni-power me-2" href="/explore"></em>Logout
                         </DropdownLink>
                     </li>
@@ -48,13 +63,12 @@
 <script>
 import ThemeSwither from "@/Components/ThemeSwither.vue";
 import MenuList from "./MenuList.vue";
-import { ref, onMounted, nextTick, onBeforeUnmount } from 'vue';
-import ButtonLink from "@/Components/Common/ButtonLink.vue";
-import DropdownLink from '@/Components/DropdownLink.vue';
+import { ref, onMounted, nextTick, onBeforeUnmount } from "vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
 
 export default {
     name: "Menu",
-    props: ['classname'],
+    props: ["classname"],
     components: {
         MenuList,
         ThemeSwither,
@@ -98,7 +112,10 @@ export default {
         const handleClickOutside = (event) => {
             console.log("Click detected:", event.target);
             console.log("Dropdown container:", dropdownContainer.value);
-            if (dropdownContainer.value && !dropdownContainer.value.contains(event.target)) {
+            if (
+                dropdownContainer.value &&
+                !dropdownContainer.value.contains(event.target)
+            ) {
                 isDropdownVisible.value = false;
             }
         };
@@ -106,23 +123,23 @@ export default {
         const themeSwitcher = (selector) => {
             let themeToggler = document.querySelectorAll(selector);
             if (themeToggler.length > 0) {
-                themeToggler.forEach(item => {
-                    item.addEventListener('click', function (e) {
+                themeToggler.forEach((item) => {
+                    item.addEventListener("click", function (e) {
                         e.preventDefault();
-                        document.body.classList.toggle('dark-mode');
-                        if (document.body.classList.contains('dark-mode')) {
-                            localStorage.setItem('website_theme', 'dark-mode');
+                        document.body.classList.toggle("dark-mode");
+                        if (document.body.classList.contains("dark-mode")) {
+                            localStorage.setItem("website_theme", "dark-mode");
                         } else {
-                            localStorage.setItem('website_theme', 'default');
+                            localStorage.setItem("website_theme", "default");
                         }
                     });
                 });
             }
 
             function retrieveTheme() {
-                var theme = localStorage.getItem('website_theme');
+                var theme = localStorage.getItem("website_theme");
                 if (theme != null) {
-                    document.body.classList.remove('default', 'dark-mode');
+                    document.body.classList.remove("default", "dark-mode");
                     document.body.classList.add(theme);
                 }
             }
@@ -130,21 +147,28 @@ export default {
             retrieveTheme();
 
             if (window) {
-                window.addEventListener('storage', function () {
-                    retrieveTheme();
-                }, false);
+                window.addEventListener(
+                    "storage",
+                    function () {
+                        retrieveTheme();
+                    },
+                    false
+                );
             }
         };
 
         onMounted(async () => {
             await nextTick();
-            themeSwitcher('.theme-toggler');
-            console.log("Dropdown container onMounted:", dropdownContainer.value);
-            document.addEventListener('click', handleClickOutside);
+            themeSwitcher(".theme-toggler");
+            console.log(
+                "Dropdown container onMounted:",
+                dropdownContainer.value
+            );
+            document.addEventListener("click", handleClickOutside);
         });
 
         onBeforeUnmount(() => {
-            document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener("click", handleClickOutside);
         });
 
         return {

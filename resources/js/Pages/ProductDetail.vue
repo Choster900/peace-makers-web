@@ -67,15 +67,13 @@
                             </div>
 
 
-                            <!-- <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
+                            <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
                                 <span class="item-detail-text-meta">lorem</span>
                                 <span class="dot-separeted"></span>
                                 <span class="item-detail-text-meta">ipsum</span>
                                 <span class="dot-separeted"></span>
                                 <span class="item-detail-text-meta">dolor</span>
-                            </div> -->
-                            {{ fileInput }}
-                            {{archivoFull}}
+                            </div>
 
                             <div class="form-item mb-4">
                                 <h5 class="mb-1 text-sm font-semibold">Selecciona categoría</h5>
@@ -88,10 +86,10 @@
                                 </select>
                             </div>
 
+           <!--                  <br>
                             <br>
-                            <br>
-                            <br>
-                            <br>
+                            <br> 
+                            <br> -->
                             <p class="item-detail-text mb-4" v-if="!EnableForEdit">{{ blog.descripcion_blog }}</p>
 
                             <textarea placeholder='Message' rows="6" name='message' v-else

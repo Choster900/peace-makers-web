@@ -260,15 +260,15 @@ sub {
 sup {
     top: -.5em;
 }
-
+/*
 a {
     color: #00314B;
     text-decoration: underline;
-}
+} */
 
-a:hover {
+/* a:hover {
     color: #61428f;
-}
+} */
 
 div .btn-dark a:hover {
     color: #cacaca;
