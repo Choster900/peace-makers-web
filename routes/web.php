@@ -87,14 +87,16 @@ Route::get('/get-ramdon-blogs-for-home', function () {
     return $blogs;
 });
 
+//Ruta para ver el blog pero en modo usuario normal
 Route::get('/post-detail/{id}', function ($id) {
     $blog = Blog::with(["secciones_informativas"])->find($id);
     if ($blog) {
-        return Inertia::render('ProductDetail', ['blog' => $blog]);
+        return Inertia::render('Blogs/Blog', ['blog' => $blog]);
     } else {
         abort(404);
     }
 });
+
 
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
 Route::post('updateBlog', [BlogController::class, 'updateBlog'])->name('updateBlog');
@@ -120,6 +122,16 @@ Route::middleware([
 
     Route::get('/new-blog', function () {
         return Inertia::render('CreateBlog');
+    });
+
+    //Ruta para ver blog en modo administrador y editarlo
+    Route::get('/post-detail-edit/{id}', function ($id) {
+        $blog = Blog::with(["secciones_informativas"])->find($id);
+        if ($blog) {
+            return Inertia::render('Blogs/EditBlog', ['blog' => $blog]);
+        } else {
+            abort(404);
+        }
     });
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])

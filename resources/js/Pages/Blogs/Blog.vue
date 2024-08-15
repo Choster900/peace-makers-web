@@ -10,27 +10,10 @@
                 <div class="row">
                     <div class="col-lg-6 pe-xl-5">
                         <div class="item-detail-content">
-                            <div class="item-detail-img-container mb-4 cursor-pointer" @click="openFileInput">
-                                <img :src="blog.foto_principal_blog" alt="" class="w-100 rounded-3"
-                                    v-if="!urlImageFile">
-                                <img v-else class="w-100 rounded-3" :src="urlImageFile" alt="Feed 01">
-                                <!-- <div class="cursor-pointer absolute inset-0 h-full"></div> -->
+                            <div class="item-detail-img-container mb-4" @click="openFileInput">
+                                <img :src="blog.foto_principal_blog" alt="" class="w-100 rounded-3">
+
                             </div>
-
-                            <input type="file" ref="fileInput" accept="image/gif,image/jpeg,image/png,image/jpg,image"
-                                style="display: none;" @change="handleFileChange">
-
-
-                            <ul class="btns-group pb-3">
-                                <li>
-                                    <button class="btn btn-lg btn-dark" @click="updateCurrentBlog()">
-                                        GUARDAR TODO
-                                        <span class="d-none d-xl-inline-block">(Reemplazara imagen y cambios hechos en
-                                            la publicacion)</span>
-                                    </button>
-                                </li>
-                            </ul>
-
                             <div class="item-detail-tab">
 
                                 <ul class="nav nav-tabs nav-tabs-s1">
@@ -54,18 +37,18 @@
                     <div class="col-lg-6">
                         <div class="item-detail-content mt-4 mt-lg-0">
                             <div class="flex justify-between">
-                                <h1 v-if="!EnableForEdit" class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
+                                <h1 class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
 
-                                <input type="text" id="text" v-else v-model="blog.titulo_blog"
-                                    class="mb-2 shadow-sm rounded-md w-full text-black font-medium  border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    placeholder="Nombre de la Publicacion" required>
-
-                                <lord-icon src="https://cdn.lordicon.com/wkvacbiw.json" trigger="click"
-                                    @click="EnableForEdit = !EnableForEdit" class="cursor-pointer"
-                                    style="width:50px;height:50px">
-                                </lord-icon>
                             </div>
-
+ <div class="form-item mb-4">
+                             <!--    <h5 class="mb-1 text-sm font-semibold">Categoría seleccionada</h5>
+                                <p class="form-text mb-2 text-xs text-gray-500">Esta es la colección donde aparecerá tu artículo.</p> -->
+                                <!-- {{ edit_1 }} -->
+                                <label class="form-label h-10 p-1 px-2 border rounded-md text-sm leading-6">
+                                    {{ optionsCategories?.find(cat => cat.id_categoria === blog.id_categoria_blog)?.nombre_categoria || 'Sin categoría' }}
+                                </label>
+                                <!-- {{ edit_2 }} -->
+                            </div>
 
                             <div class="item-detail-meta d-flex flex-wrap align-items-center mb-3">
                                 <span class="item-detail-text-meta">lorem</span>
@@ -75,26 +58,10 @@
                                 <span class="item-detail-text-meta">dolor</span>
                             </div>
 
-                            <div class="form-item mb-4">
-                                <h5 class="mb-1 text-sm font-semibold">Selecciona categoría</h5>
-                                <p class="form-text mb-2 text-xs text-gray-500">Esta es la colección donde aparecerá tu
-                                    artículo.</p>
-                                <select class="form-select h-10 p-1 px-2 border rounded-md text-sm leading-6"
-                                    aria-label="Default select example" v-model="blog.id_categoria_blog">
-                                    <option v-for="(cat, i) in optionsCategories" :key="i" :value="cat.id_categoria">{{
-                                cat.nombre_categoria }}</option>
-                                </select>
-                            </div>
 
-           <!--                  <br>
-                            <br>
-                            <br> 
-                            <br> -->
                             <p class="item-detail-text mb-4" v-if="!EnableForEdit">{{ blog.descripcion_blog }}</p>
 
-                            <textarea placeholder='Message' rows="6" name='message' v-else
-                                v-model="blog.descripcion_blog"
-                                class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
+
 
 
                             <div class="item-credits pb-3">
@@ -102,7 +69,7 @@
                                     <div class="col-xl-6">
                                         <div class="card-media card-media-s1">
                                             <DropdownLink class="card-media-img flex-shrink-0 d-block">
-                                                <img src="../../images/thumb/avatar-10.jpg" alt="avatar">
+                                                <img src="../../../images/thumb/avatar-10.jpg" alt="avatar">
                                             </DropdownLink>
                                             <div class="card-media-body *:text-xs">
                                                 <DropdownLink href="/"
@@ -126,7 +93,7 @@
                     <div class="tab-pane fade show active mt-5" aria-labelledby="owners-tab">
                         <div class="item-detail-tab-wrap">
                             <div class="card-media card-media-s2 mb-3">
-                                <div class="flex  items-start justify-center bg-white px-6 md:px-40">
+                                <div class="flex items-start justify-center bg-white px-6 md:px-40">
                                     <div class="space-y-6 border-l-2 border-dashed">
 
                                         <div class="relative w-full" v-for="(item, index) in arraySeccionInformativa">
@@ -138,25 +105,14 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <div class="ml-6">
-                                                <h4 class="font-bold text-blue-500">{{ item.nombre_seccion_informativa
+                                                <h4 class="font-bold text-blue-500 ">{{ item.nombre_seccion_informativa
                                                     }}</h4>
-
-                                                <input type="text" id="text" v-model="item.nombre_seccion_informativa"
-                                                    @input="updateSeccionInformativa(item.id_seccion_informativa, 'nombre_seccion_informativa', $event.target.value)"
-                                                    class="mb-2 shadow-sm rounded-md w-full h-10 text-black font-medium border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                                    placeholder="Nombre de la Publicacion" required>
-
 
                                                 <p class="mt-2 max-w-screen-sm text-sm text-gray-500">
                                                     {{ item.contenido_seccion_informativa }}</p>
 
-
-                                                <textarea placeholder='Message' rows="6" name='message'
-                                                    v-model="item.contenido_seccion_informativa"
-                                                    @input="updateSeccionInformativa(item.id_seccion_informativa, 'contenido_seccion_informativa', $event.target.value)"
-                                                    class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"></textarea>
-                                                <span class="mt-1 block text-sm font-semibold text-blue-500">{{
-                                moment().format("LL") }}</span>
+                                                    <span class="mt-1 block text-sm font-semibold text-blue-500">{{
+                                                        moment().format("LL") }}</span>
                                             </div>
                                         </div>
 
@@ -225,11 +181,7 @@
         </section>
 
     </div>
-    <pre>
-    {{ blog }}
 
-    {{ arraySeccionInformativa }}
-    </pre>
 </template>
 
 <script>
