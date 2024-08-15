@@ -69,6 +69,10 @@ Route::get('/new-blog', function () {
     return Inertia::render('CreateBlog');
 });
 
+Route::get('/donate', function () {
+    return Inertia::render('Donations/Donation');
+});
+
 Route::get('/test', function () {
     return Inertia::render('Welcome', [
         'canLogin'       => Route::has('login'),

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\SeccionInformativa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SeccionInformativaController extends Controller
@@ -17,12 +18,13 @@ class SeccionInformativaController extends Controller
                 SeccionInformativa::where("id_seccion_informativa", $value["id_seccion_informativa"])->update([
                     'id_tipo_seccion'                    => 1,
                     'id_blog'                            => $request->idBlog,
-
+                    'fecha_creacion_seccion_informativa' => Carbon::now(),
                 ]);
             } else {
                 SeccionInformativa::insert([
                     'id_tipo_seccion'                    => 1,
                     'id_blog'                            => $request->idBlog,
+                    'fecha_creacion_seccion_informativa' => Carbon::now(),
                 ]);
             }
         }
@@ -33,7 +35,9 @@ class SeccionInformativaController extends Controller
     {
 
         return SeccionInformativa::where("id_seccion_informativa", $request->id_seccion_informativa)->update([
-            $request->campoActualizar                 => $request->valorEnviado
+            $request->campoActualizar                 => $request->valorEnviado,
+            'fecha_creacion_seccion_informativa' => Carbon::now(),
+
         ]);
     }
     function updateBlog(Request $request)

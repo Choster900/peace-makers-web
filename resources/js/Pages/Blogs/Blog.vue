@@ -40,12 +40,13 @@
                                 <h1 class="item-detail-title mb-2">{{ blog.titulo_blog }}</h1>
 
                             </div>
- <div class="form-item mb-4">
-                             <!--    <h5 class="mb-1 text-sm font-semibold">Categoría seleccionada</h5>
+                            <div class="form-item mb-4">
+                                <!--    <h5 class="mb-1 text-sm font-semibold">Categoría seleccionada</h5>
                                 <p class="form-text mb-2 text-xs text-gray-500">Esta es la colección donde aparecerá tu artículo.</p> -->
                                 <!-- {{ edit_1 }} -->
                                 <label class="form-label h-10 p-1 px-2 border rounded-md text-sm leading-6">
-                                    {{ optionsCategories?.find(cat => cat.id_categoria === blog.id_categoria_blog)?.nombre_categoria || 'Sin categoría' }}
+                                    {{ optionsCategories?.find(cat => cat.id_categoria ===
+                                blog.id_categoria_blog)?.nombre_categoria || 'Sin categoría' }}
                                 </label>
                                 <!-- {{ edit_2 }} -->
                             </div>
@@ -82,11 +83,6 @@
 
                                 </div>
                             </div>
-                            <!--  <button
-                                class="middle none center w-full rounded-md bg-[#0E3C55] py-2 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                data-ripple-light="true">
-                                Terminar y guardar
-                            </button> -->
                         </div>
                     </div>
 
@@ -105,14 +101,11 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <div class="ml-6">
-                                                <h4 class="font-bold text-blue-500 ">{{ item.nombre_seccion_informativa
-                                                    }}</h4>
+                                                <h4 class="font-bold text-blue-500 ">{{ item.nombre_seccion_informativa }}</h4>
 
-                                                <p class="mt-2 max-w-screen-sm text-sm text-gray-500">
-                                                    {{ item.contenido_seccion_informativa }}</p>
+                                                    <div class="mt-2 max-w-screen-sm text-sm text-gray-500 text-justify" v-html="formattedContent(item.contenido_seccion_informativa)"></div>
 
-                                                    <span class="mt-1 block text-sm font-semibold text-blue-500">{{
-                                                        moment().format("LL") }}</span>
+                                                <span class="mt-1 block text-sm font-semibold text-blue-500">{{ moment(item.fecha_creacion_seccion_informativa).format("LL") }}</span>
                                             </div>
                                         </div>
 
@@ -209,6 +202,10 @@ export default {
             tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
             fechaReflejadaBlog, estadoBlog, archivoFull
         } = useNewBlog()
+
+        const formattedContent = (content) => {
+            return content.replace(/\n/g, '<br>'); // Reemplaza saltos de línea con <br>
+        };
 
         const modalIsOpen = ref(false)
         const arraySeccionInformativa = ref([])
@@ -392,8 +389,9 @@ export default {
             urlImageFile,
             openFileInput, updateSeccionInformativa,
             handleDragOver,
-            handleFileChange, idBlog,
-            tituloBlog, descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
+            handleFileChange, idBlog, formattedContent,
+            tituloBlog,
+            descripcionBlog, fotoPrincipalBlog, contenidoDescripcionBlog, numeroVisitasBlog,
             fechaReflejadaBlog, estadoBlog
 
         }
