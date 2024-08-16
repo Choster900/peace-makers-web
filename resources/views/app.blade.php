@@ -27,23 +27,7 @@
 
 
     <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '5.00' // Cambia el valor según sea necesario
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Aquí puedes redirigir o realizar otras acciones después de la transacción
-                });
-            }
-        }).render('#paypal-button-container'); // Renderiza el botón en el contenedor
+
     </script>
 </body>
 
