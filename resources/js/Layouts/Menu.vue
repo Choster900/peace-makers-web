@@ -4,8 +4,8 @@
         <MenuList></MenuList>
         <ul class="menu-btns menu-btns-2">
             <li class="d-none d-lg-inline-block">
-                <router-link to="wallet" class="icon-btn icon-btn-s1" title="Wallet">
-                    <em class="ni ni-wallet"></em></router-link>
+                <DropdownLink :href="route('donate')" class="icon-btn icon-btn-s1" title="Wallet">
+                    <em class="ni ni-wallet"></em></DropdownLink>
             </li>
             <li class="d-none d-lg-inline-block dropdown" ref="dropdownContainer">
                 <button type="button" class="icon-btn icon-btn-s1" @click="toggleDropdown">
@@ -47,8 +47,11 @@
                         <hr class="dropdown-divider" />
                     </li>
                     <li>
-                        <DropdownLink :href="route('logout')" method="post" class="dropdown-item card-generic-item ">
-                            <em class="ni ni-power me-2" href="/explore"></em>Logout
+                        <DropdownLink v-if="$page.props.auth.user?.id " :href="route('logout')" method="post" class="dropdown-item card-generic-item ">
+                            <em class="ni ni-power me-2" ></em>Logout
+                        </DropdownLink>
+                        <DropdownLink v-else :href="route('login')" method="get" class="dropdown-item card-generic-item ">
+                            <em class="ni ni-power me-2"  ></em>Login
                         </DropdownLink>
                     </li>
                 </ul>
