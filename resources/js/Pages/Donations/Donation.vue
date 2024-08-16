@@ -6,7 +6,8 @@
             <HeaderMain isTransparent="is-transparent"></HeaderMain>
             <section class=" ">
 
-                <div id="paypal-button-container" class="mt-4"></div>                <div class="container">
+
+                <div class="container">
 
                     <div class="flex max p-6  rounded-lg shadow-lg text-gray-800">
 
@@ -24,16 +25,16 @@
                         </div>
 
                         <div>
-
-                            <h2 class="text-lg font-semibold mb-2">Confirm your donation of $5 / month:</h2>
+                            <!--  {{ amount }} -->
+                            <h2 class="text-lg font-semibold mb-2">Confirm your donation of ${{ amount }} / month:</h2>
                             <div class="flex space-x-4 mb-4">
-                                <button
+                                <button @click="amount = 0.01"
                                     class="flex-1 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">$5</button>
-                                <button
+                                <button @click="amount = 10"
                                     class="flex-1 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">$10</button>
-                                <button
+                                <button @click="amount = 20"
                                     class="flex-1 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">$20</button>
-                                <button
+                                <button @click="amount = 40"
                                     class="flex-1 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">$40</button>
                             </div>
                             <p class="mb-4">$5 donation will provide 250 hours of learning to people around the world
@@ -43,6 +44,10 @@
                             <button
                                 class="w-full py-2 bg-yellow-500 text-gray-800 font-bold rounded-md hover:bg-yellow-600">Donate</button>
 
+
+                            <div>
+                                <div id="paypal-button-container" class="mt-4"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -65,12 +70,45 @@ import HeaderMain from '@/Layouts/HeaderMain.vue';
 import Footer from '@/Layouts/Footer.vue';
 import SectionHeading from '@/Components/common/SectionHeading.vue';
 import ButtonLink from '@/Components/Common/ButtonLink.vue';
+import { ref, nextTick } from 'vue';
 
 export default {
     components: { HeaderMain, Footer, SectionHeading, ButtonLink },
     setup() {
+        const amount = ref(5);
 
-        return {}
+        const renderPayPalButton = () => {
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amount.value // Cambia el valor según sea necesario
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        console.log(details);
+                        // Aquí puedes redirigir o realizar otras acciones después de la transacción
+                    });
+                },
+                onCancel: function (data) {
+                    alert("Transaction cancelled by ");
+                    console.log(data);
+                }
+            }).render('#paypal-button-container'); // Renderiza el botón en el contenedor
+        };
+
+
+        nextTick(() => {
+            renderPayPalButton(); // Llama a la función después de que el DOM esté listo
+        });
+
+        return {
+            amount,
+        }
     }
 }
 </script>
