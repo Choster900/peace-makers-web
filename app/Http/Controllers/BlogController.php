@@ -87,4 +87,29 @@ class BlogController extends Controller
     {
         return CategoriaBlog::all();
     }
+
+    function disableBlog(Request $request)
+    {
+        // Validar que se reciba un id_blog válido
+        $request->validate([
+            'blog.id_blog' => 'required|integer|exists:blog,id_blog',
+        ]);
+
+        // Obtener el blog actual
+        $blog = Blog::findOrFail($request->blog["id_blog"]);
+
+        // Alternar el estado del blog
+        $newState = $blog->estado_blog === 1 ? 0 : 1;
+
+        // Actualizar el estado del blog
+        $updated = $blog->update([
+            "estado_blog" => $newState,
+        ]);
+
+        // Retornar una respuesta adecuada
+        return response()->json([
+            'message' => $updated ? 'Estado del blog actualizado correctamente.' : 'No se pudo actualizar el estado del blog.',
+            'new_state' => $newState,
+        ], $updated ? 200 : 400);
+    }
 }

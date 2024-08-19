@@ -22,11 +22,18 @@
 
 
                             <ul class="btns-group pb-3">
-                                <li>
+                                <li >
                                     <button class="btn btn-lg btn-dark" @click="updateCurrentBlog()">
                                         GUARDAR TODO
                                         <span class="d-none d-xl-inline-block">(Reemplazara imagen y cambios hechos en
                                             la publicacion)</span>
+                                    </button>
+                                </li>
+                                <li class="w-full">
+                                    <button class="w-full btn btn-lg btn-danger" @click="disableBlog()">
+                                        Deshabilitar blog
+                                        <!-- <span class="d-none d-xl-inline-block">(Reemplazara imagen y cambios hechos en
+                                            la publicacion)</span> -->
                                     </button>
                                 </li>
                             </ul>
@@ -312,6 +319,37 @@ export default {
 
         }
 
+
+        const disableBlog = async () => {
+            const confirmed = await Swal.fire({
+                title: '¿Está seguro de deshabilitar blog?',
+                icon: 'question',
+                iconHtml: '❓',
+                confirmButtonText: 'Si, Agregar el blog',
+                confirmButtonColor: '#141368',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true,
+                showCloseButton: true
+            });
+
+
+            if (confirmed.isConfirmed) {
+
+
+
+                axios.post('/disableBlog', { blog: blog.value})
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+
+                        console.error(error);
+                    });
+
+            }
+
+        }
+
         const clickForPushToArraySecction = async () => {
 
             const confirmed = await Swal.fire({
@@ -431,6 +469,7 @@ export default {
             modalIsOpen, arraySeccionInformativa, clickForPushToArraySecction,
             updateBlop,
             optionsCategories,
+            disableBlog,
             fileInput,
             handleDrop,
             updateCurrentBlog,

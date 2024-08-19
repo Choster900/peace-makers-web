@@ -26,7 +26,7 @@
                         transform: translate(-5.55556px, 46.6667px);
                     ">
                     <li>
-                        <h6 class="dropdown-header">Hello kamran!</h6>
+                        <h6 class="dropdown-header" v-if="$page.props.auth.user">Hello {{  $page.props.auth.user?.name }}</h6>
                     </li>
                     <li v-for="list in authorNav" :key="list.id">
                         <router-link class="dropdown-item card-generic-item" :to="list.path">

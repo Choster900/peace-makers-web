@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('rol_id')->nullable(); // Establecer 3 como valor predeterminado
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable(); // Permitir que password sea null
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+           // $table->string('password')->nullable()->change();
+            $table->string('avatar')->nullable();
+            $table->string('external_id')->nullable();
+            $table->string('external_auth')->nullable();
             $table->timestamps();
         });
     }

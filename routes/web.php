@@ -89,10 +89,15 @@ Route::get('/test', function () {
 
 // Rutas relacionadas con los blogs
 Route::get('/get-ramdon-blogs-for-home', function () {
-    $blogs = Blog::inRandomOrder()->limit(4)->get();
+    $blogs = Blog::where('estado_blog', 1) // Filtrar blogs donde el estado sea 1
+        ->inRandomOrder()
+        ->limit(4)
+        ->get();
+
     foreach ($blogs as $blog) {
         $blog->load("secciones_informativas");
     }
+
     return $blogs;
 });
 
@@ -109,6 +114,7 @@ Route::get('/post-detail/{id}', function ($id) {
 
 Route::post('addNewBlog', [BlogController::class, 'addNewBlog'])->name('addNewBlog');
 Route::post('updateBlog', [BlogController::class, 'updateBlog'])->name('updateBlog');
+Route::post('disableBlog', [BlogController::class, 'disableBlog'])->name('disableBlog');
 Route::get('getCategoriesBlog', [BlogController::class, 'getCategoriesBlog'])->name('getCategoriesBlog');
 
 // Rutas relacionadas con secciones informativas
@@ -132,7 +138,7 @@ Route::middleware([
 
     Route::get('/new-blog', function () {
         return Inertia::render('CreateBlog');
-    });
+    })->middleware('checkRole:1,2'); // Permitir acceso solo si el rol es 1 o 2
 
     //Ruta para ver blog en modo administrador y editarlo
     Route::get('/post-detail-edit/{id}', function ($id) {
@@ -142,7 +148,7 @@ Route::middleware([
         } else {
             abort(404);
         }
-    });
+    })->middleware('checkRole:1,2');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
@@ -168,6 +174,7 @@ Route::get('/google-callback', function () {
         $user = User::create([
             'name' => $googleUser->name,
             'email' => $googleUser->email,
+            'rol_id' => 3,
             'avatar' => $googleUser->avatar,
             'external_id' => $googleUser->id, // O asigna un valor si es necesario
             'external_auth' => 'google', // O asigna un valor si es necesario
@@ -177,5 +184,5 @@ Route::get('/google-callback', function () {
     // Inicia sesión con el usuario
     Auth::login($user);
 
-    return redirect('/');
+    return redirect(session('url.intended', '/'));
 });
